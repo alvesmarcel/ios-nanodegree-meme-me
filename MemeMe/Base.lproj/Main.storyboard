@@ -52,7 +52,7 @@
                                     </mask>
                                 </variation>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FOd-3v-UeQ">
+                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FOd-3v-UeQ">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -82,7 +82,7 @@
                                     </mask>
                                 </variation>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Crb-xU-mze">
+                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Crb-xU-mze">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -103,6 +103,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="kro-rs-O5r" secondAttribute="trailing" constant="-16" id="Trp-CS-Zxg"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="60o-sf-1wS" secondAttribute="bottom" id="YAO-4B-3WH"/>
                             <constraint firstItem="60o-sf-1wS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="aOX-Rc-oag"/>
+                            <constraint firstItem="kro-rs-O5r" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="20" id="ezd-pf-zSi"/>
                             <constraint firstAttribute="centerX" secondItem="FOd-3v-UeQ" secondAttribute="centerX" id="gcW-0Y-Sit"/>
                             <constraint firstAttribute="centerX" secondItem="Crb-xU-mze" secondAttribute="centerX" id="jpg-XG-hzN"/>
                             <constraint firstItem="kro-rs-O5r" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="mnQ-a1-Cnz"/>
@@ -123,6 +124,7 @@
                                 <exclude reference="p9c-Ka-EYR"/>
                                 <exclude reference="OgJ-Vf-04Y"/>
                                 <exclude reference="Trp-CS-Zxg"/>
+                                <exclude reference="ezd-pf-zSi"/>
                                 <exclude reference="mnQ-a1-Cnz"/>
                                 <exclude reference="MYq-JK-d8k"/>
                                 <exclude reference="NXf-aj-yWk"/>
@@ -150,8 +152,9 @@
                                 <include reference="R6O-J0-wUr"/>
                                 <include reference="RnD-cL-X2o"/>
                                 <include reference="p9c-Ka-EYR"/>
-                                <include reference="OgJ-Vf-04Y"/>
+                                <exclude reference="OgJ-Vf-04Y"/>
                                 <include reference="Trp-CS-Zxg"/>
+                                <include reference="ezd-pf-zSi"/>
                                 <include reference="mnQ-a1-Cnz"/>
                                 <include reference="MYq-JK-d8k"/>
                                 <include reference="NXf-aj-yWk"/>
