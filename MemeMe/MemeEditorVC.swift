@@ -26,7 +26,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     NSStrokeColorAttributeName : UIColor.blackColor(),
     NSForegroundColorAttributeName : UIColor.whiteColor(),
     NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-    NSStrokeWidthAttributeName : -3.0
+    NSStrokeWidthAttributeName : -4.0
   ]
   
   override func viewDidLoad() {
@@ -49,6 +49,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     bottomTextField.delegate = self
     setTextAttributes(bottomTextField)
     
+    // shareButton should be enabled only when there's an image selected
     shareButton.enabled = false
   }
   
