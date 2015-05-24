@@ -30,6 +30,7 @@
             <objects>
                 <collectionViewController id="bIU-yG-pwS" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="APf-UJ-mIh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aH3-wK-Jh6">
                             <size key="itemSize" width="50" height="50"/>
@@ -38,7 +39,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="i9M-Y0-oR0">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="i9M-Y0-oR0">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -53,7 +54,13 @@
                             <outlet property="delegate" destination="bIU-yG-pwS" id="ruV-1h-rnc"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="UPN-wi-mnA"/>
+                    <navigationItem key="navigationItem" id="UPN-wi-mnA">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Smg-ud-8Un">
+                            <connections>
+                                <segue destination="vXZ-lx-hvc" kind="presentation" id="NBd-fM-aI4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tor-pv-FxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,10 +71,11 @@
             <objects>
                 <tableViewController id="qUE-P7-oP7" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Edb-ve-7MA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="OW1-jm-q4Y">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="OW1-jm-q4Y">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OW1-jm-q4Y" id="Bg4-SB-Krz">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -79,7 +87,13 @@
                             <outlet property="delegate" destination="qUE-P7-oP7" id="DM2-0J-hOw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="n2A-pF-uEP"/>
+                    <navigationItem key="navigationItem" id="n2A-pF-uEP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mzt-bf-CUf">
+                            <connections>
+                                <segue destination="vXZ-lx-hvc" kind="presentation" id="9KY-Zi-CNA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZyX-Bd-TTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -149,7 +163,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="512-Dz-gMo"/>
-                                    <barButtonItem title="Cancel" id="7Xu-cv-1AI"/>
+                                    <barButtonItem title="Cancel" id="7Xu-cv-1AI">
+                                        <connections>
+                                            <action selector="cancelEdition:" destination="vXZ-lx-hvc" id="bo8-Ak-eqn"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -268,7 +286,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1957.5" y="340"/>
+            <point key="canvasLocation" x="1636.5" y="276"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pCp-F9-Inj">
@@ -315,4 +333,7 @@
         <image name="collectionIcon" width="30" height="30"/>
         <image name="tableIcon" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="9KY-Zi-CNA"/>
+    </inferredMetricsTieBreakers>
 </document>

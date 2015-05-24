@@ -130,6 +130,10 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
       self.dismissViewControllerAnimated(true, completion: nil)
     }
   }
+  
+  @IBAction func cancelEdition(sender: AnyObject) {
+    dismissViewControllerAnimated(true, completion: nil)
+  }
 
   // UIImagePickerControllerDelegate methods
   
