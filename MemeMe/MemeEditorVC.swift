@@ -35,7 +35,9 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     // Disable cameraButton if the camera is not avaible
     cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
     
-    imagePickerView.contentMode = UIViewContentMode.ScaleAspectFill
+    // imagePickerView initial configuration
+    imagePickerView.contentMode = UIViewContentMode.ScaleAspectFit
+    imagePickerView.backgroundColor = UIColor.darkGrayColor()
     
     // Set topTextField initial configuration and delegate
     topTextField.text = "TOP"
@@ -82,11 +84,11 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
   }
   
   func keyboardWillShow(notification: NSNotification) {
-    self.view.frame.origin.y -= getKeyboardHeight(notification)
+    view.frame.origin.y -= getKeyboardHeight(notification)
   }
   
   func keyboardWillHide(notification: NSNotification) {
-    self.view.frame.origin.y += getKeyboardHeight(notification)
+    view.frame.origin.y += getKeyboardHeight(notification)
   }
   
   func subscribeToKeyboardNotifications() {
@@ -117,7 +119,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
       imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
     }
     
-    self.presentViewController(imagePicker, animated: true, completion: nil)
+    presentViewController(imagePicker, animated: true, completion: nil)
   }
   
   @IBAction func shareMeme(sender: AnyObject) {
@@ -142,11 +144,11 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
       imagePickerView.image = image
       shareButton.enabled = true
     }
-    self.dismissViewControllerAnimated(true, completion: nil)
+    dismissViewControllerAnimated(true, completion: nil)
   }
 
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    self.dismissViewControllerAnimated(true, completion: nil)
+    dismissViewControllerAnimated(true, completion: nil)
   }
   
   func save() {
