@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Meme EditorVC-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="MemeEditorVC" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -64,7 +64,7 @@
                                     <constraint firstAttribute="height" constant="44" id="bV6-z1-jNn"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Share" id="xGC-gx-1ry">
+                                    <barButtonItem systemItem="action" id="xGC-gx-1ry">
                                         <connections>
                                             <action selector="shareMeme:" destination="vXZ-lx-hvc" id="oe3-7E-DRX"/>
                                         </connections>
