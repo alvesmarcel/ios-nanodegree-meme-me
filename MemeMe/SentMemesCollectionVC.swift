@@ -45,4 +45,9 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
     
   }
   
+  func deleteMeme(index: Int) {
+    let object = UIApplication.sharedApplication().delegate
+    let appDelegate = object as! AppDelegate
+    appDelegate.memes.removeAtIndex(index)
+  }
 }

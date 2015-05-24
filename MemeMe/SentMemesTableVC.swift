@@ -44,6 +44,20 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
   func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
     
   }
+  
+  func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    if editingStyle == UITableViewCellEditingStyle.Delete {
+      memes.removeAtIndex(indexPath.row)
+      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+      deleteMeme(indexPath.row)
+    }
+  }
+  
+  func deleteMeme(index: Int) {
+    let object = UIApplication.sharedApplication().delegate
+    let appDelegate = object as! AppDelegate
+    appDelegate.memes.removeAtIndex(index)
+  }
 }
 
 
