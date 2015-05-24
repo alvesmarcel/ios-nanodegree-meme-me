@@ -96,12 +96,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="UOx-fw-Eck" secondAttribute="bottom" id="7LQ-LD-ZvY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="60o-sf-1wS" secondAttribute="trailing" constant="-16" id="KWa-vK-3Xh"/>
                             <constraint firstItem="kro-rs-O5r" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="OgJ-Vf-04Y"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UOx-fw-Eck" secondAttribute="trailing" constant="-16" id="R6O-J0-wUr"/>
                             <constraint firstItem="UOx-fw-Eck" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="RnD-cL-X2o"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kro-rs-O5r" secondAttribute="trailing" constant="-16" id="Trp-CS-Zxg"/>
-                            <constraint firstItem="60o-sf-1wS" firstAttribute="top" secondItem="UOx-fw-Eck" secondAttribute="bottom" id="UpJ-WP-fiM"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="60o-sf-1wS" secondAttribute="bottom" id="YAO-4B-3WH"/>
                             <constraint firstItem="60o-sf-1wS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="aOX-Rc-oag"/>
                             <constraint firstItem="kro-rs-O5r" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="mnQ-a1-Cnz"/>
@@ -116,16 +116,16 @@
                                 <exclude reference="Crb-xU-mze"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="YAO-4B-3WH"/>
-                                <exclude reference="KWa-vK-3Xh"/>
-                                <exclude reference="UpJ-WP-fiM"/>
-                                <exclude reference="aOX-Rc-oag"/>
-                                <exclude reference="OgJ-Vf-04Y"/>
-                                <exclude reference="Trp-CS-Zxg"/>
-                                <exclude reference="mnQ-a1-Cnz"/>
                                 <exclude reference="R6O-J0-wUr"/>
                                 <exclude reference="RnD-cL-X2o"/>
                                 <exclude reference="p9c-Ka-EYR"/>
+                                <exclude reference="OgJ-Vf-04Y"/>
+                                <exclude reference="Trp-CS-Zxg"/>
+                                <exclude reference="mnQ-a1-Cnz"/>
+                                <exclude reference="KWa-vK-3Xh"/>
+                                <exclude reference="aOX-Rc-oag"/>
+                                <exclude reference="7LQ-LD-ZvY"/>
+                                <exclude reference="YAO-4B-3WH"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -137,16 +137,16 @@
                                 <include reference="Crb-xU-mze"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="YAO-4B-3WH"/>
-                                <include reference="KWa-vK-3Xh"/>
-                                <include reference="UpJ-WP-fiM"/>
-                                <include reference="aOX-Rc-oag"/>
-                                <include reference="OgJ-Vf-04Y"/>
-                                <include reference="Trp-CS-Zxg"/>
-                                <include reference="mnQ-a1-Cnz"/>
                                 <include reference="R6O-J0-wUr"/>
                                 <include reference="RnD-cL-X2o"/>
                                 <include reference="p9c-Ka-EYR"/>
+                                <include reference="OgJ-Vf-04Y"/>
+                                <include reference="Trp-CS-Zxg"/>
+                                <include reference="mnQ-a1-Cnz"/>
+                                <include reference="KWa-vK-3Xh"/>
+                                <include reference="aOX-Rc-oag"/>
+                                <include reference="7LQ-LD-ZvY"/>
+                                <include reference="YAO-4B-3WH"/>
                             </mask>
                         </variation>
                     </view>

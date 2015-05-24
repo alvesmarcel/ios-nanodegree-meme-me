@@ -34,13 +34,14 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     // Do any additional setup after loading the view, typically from a nib.
     cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
     
-    imagePickerView.contentMode = UIViewContentMode.ScaleAspectFit
+    imagePickerView.contentMode = UIViewContentMode.ScaleAspectFill
+    
     topTextField.text = "TOP"
     topTextField.textAlignment = NSTextAlignment.Center
     topTextField.defaultTextAttributes = memeTextAttributes
     topTextFieldEdited = false
-    
     topTextField.delegate = self
+    
     bottomTextField.text = "BOTTOM"
     bottomTextField.textAlignment = NSTextAlignment.Center
     bottomTextField.delegate = self
