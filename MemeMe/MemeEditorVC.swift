@@ -31,27 +31,34 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    // Disable cameraButton if the camera is not avaible
     cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
     
     imagePickerView.contentMode = UIViewContentMode.ScaleAspectFill
     
+    // Set topTextField initial configuration and delegate
     topTextField.text = "TOP"
-    topTextField.defaultTextAttributes = memeTextAttributes
-    topTextField.textAlignment = .Center
     topTextFieldEdited = false
     topTextField.delegate = self
+    setTextAttributes(topTextField)
     
+    // Set bottomTextField initial configuration and delegate
     bottomTextField.text = "BOTTOM"
-    bottomTextField.defaultTextAttributes = memeTextAttributes
-    bottomTextField.textAlignment = .Center
     bottomTextFieldEdited = false
     bottomTextField.delegate = self
+    setTextAttributes(bottomTextField)
     
     shareButton.enabled = false
   }
   
+  func setTextAttributes(textField: UITextField) {
+    textField.defaultTextAttributes = memeTextAttributes
+    textField.textAlignment = .Center
+  }
+  
   func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    setTextAttributes(textField) // Avoid bug from commit 440310157272601e563c4e116218223778cb16fb
     if (textField.tag == 3) {
       if (!topTextFieldEdited) {
         textField.text = ""
