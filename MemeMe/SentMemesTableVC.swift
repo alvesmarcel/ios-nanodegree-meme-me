@@ -36,14 +36,10 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
     println(meme.topText)
     
     // Set name and image
-    cell.textLabel?.text = meme.topText
+    cell.textLabel?.text = meme.topText + " " + meme.bottomText
     cell.imageView?.image = meme.memedImage
     
     return cell
-  }
-  
-  func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return true
   }
   
   func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
