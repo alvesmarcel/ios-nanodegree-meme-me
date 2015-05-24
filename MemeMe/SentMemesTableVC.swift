@@ -26,14 +26,13 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.memes.count
+    return memes.count
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     // TODO: set new size for image in cell
     let cell = tableView.dequeueReusableCellWithIdentifier("tableCell") as! UITableViewCell
     let meme = self.memes[indexPath.row]
-    println(meme.topText)
     
     // Set name and image
     cell.textLabel?.text = meme.topText + " " + meme.bottomText
