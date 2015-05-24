@@ -37,15 +37,15 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     imagePickerView.contentMode = UIViewContentMode.ScaleAspectFill
     
     topTextField.text = "TOP"
-    topTextField.textAlignment = NSTextAlignment.Center
     topTextField.defaultTextAttributes = memeTextAttributes
+    topTextField.textAlignment = .Center
     topTextFieldEdited = false
     topTextField.delegate = self
     
     bottomTextField.text = "BOTTOM"
-    bottomTextField.textAlignment = NSTextAlignment.Center
     bottomTextField.delegate = self
     bottomTextField.defaultTextAttributes = memeTextAttributes
+    bottomTextField.textAlignment = .Center
     bottomTextFieldEdited = false
     
     shareButton.enabled = false
