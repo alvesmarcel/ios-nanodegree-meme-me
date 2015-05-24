@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -26,18 +27,19 @@
                                     <constraint firstAttribute="height" constant="44" id="0ad-Sh-o3K"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem width="59" style="plain" systemItem="fixedSpace" id="dFW-iT-QFa"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="m4G-W4-B27"/>
                                     <barButtonItem tag="1" systemItem="camera" id="2ZM-mq-hTP">
                                         <connections>
                                             <action selector="pickAnImage:" destination="vXZ-lx-hvc" id="sLH-b1-RP6"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="147" style="plain" systemItem="fixedSpace" id="S7j-TW-OnX"/>
-                                    <barButtonItem tag="2" title="Pick" id="TAn-60-Sqj">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="CYy-6R-J6Q"/>
+                                    <barButtonItem tag="2" title="Album" id="TAn-60-Sqj">
                                         <connections>
                                             <action selector="pickAnImage:" destination="vXZ-lx-hvc" id="fT0-tr-xJA"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="gxz-hz-ZC5"/>
                                 </items>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -69,6 +71,8 @@
                                             <action selector="shareMeme:" destination="vXZ-lx-hvc" id="oe3-7E-DRX"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="512-Dz-gMo"/>
+                                    <barButtonItem title="Cancel" id="7Xu-cv-1AI"/>
                                 </items>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -112,16 +116,16 @@
                                 <exclude reference="Crb-xU-mze"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="R6O-J0-wUr"/>
-                                <exclude reference="RnD-cL-X2o"/>
-                                <exclude reference="p9c-Ka-EYR"/>
-                                <exclude reference="OgJ-Vf-04Y"/>
-                                <exclude reference="Trp-CS-Zxg"/>
-                                <exclude reference="mnQ-a1-Cnz"/>
+                                <exclude reference="YAO-4B-3WH"/>
                                 <exclude reference="KWa-vK-3Xh"/>
                                 <exclude reference="UpJ-WP-fiM"/>
                                 <exclude reference="aOX-Rc-oag"/>
-                                <exclude reference="YAO-4B-3WH"/>
+                                <exclude reference="OgJ-Vf-04Y"/>
+                                <exclude reference="Trp-CS-Zxg"/>
+                                <exclude reference="mnQ-a1-Cnz"/>
+                                <exclude reference="R6O-J0-wUr"/>
+                                <exclude reference="RnD-cL-X2o"/>
+                                <exclude reference="p9c-Ka-EYR"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -133,27 +137,28 @@
                                 <include reference="Crb-xU-mze"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="R6O-J0-wUr"/>
-                                <include reference="RnD-cL-X2o"/>
-                                <include reference="p9c-Ka-EYR"/>
-                                <include reference="OgJ-Vf-04Y"/>
-                                <include reference="Trp-CS-Zxg"/>
-                                <include reference="mnQ-a1-Cnz"/>
+                                <include reference="YAO-4B-3WH"/>
                                 <include reference="KWa-vK-3Xh"/>
                                 <include reference="UpJ-WP-fiM"/>
                                 <include reference="aOX-Rc-oag"/>
-                                <include reference="YAO-4B-3WH"/>
+                                <include reference="OgJ-Vf-04Y"/>
+                                <include reference="Trp-CS-Zxg"/>
+                                <include reference="mnQ-a1-Cnz"/>
+                                <include reference="R6O-J0-wUr"/>
+                                <include reference="RnD-cL-X2o"/>
+                                <include reference="p9c-Ka-EYR"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="FOd-3v-UeQ" id="bQI-SR-6E1"/>
+                        <outlet property="bottomToolbar" destination="60o-sf-1wS" id="3NW-07-jcu"/>
                         <outlet property="cameraButton" destination="2ZM-mq-hTP" id="Ug3-Ql-qf5"/>
                         <outlet property="imagePickerView" destination="UOx-fw-Eck" id="emp-rJ-6WU"/>
                         <outlet property="pickButton" destination="TAn-60-Sqj" id="VwI-Uy-RSS"/>
                         <outlet property="shareButton" destination="xGC-gx-1ry" id="F5m-ii-h8f"/>
-                        <outlet property="toolbar" destination="60o-sf-1wS" id="KSq-Ni-xqX"/>
                         <outlet property="topTextField" destination="Crb-xU-mze" id="SqY-qX-dAO"/>
+                        <outlet property="topToolbar" destination="kro-rs-O5r" id="Ayz-4R-gvq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

@@ -15,9 +15,10 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
   @IBOutlet weak var pickButton: UIBarButtonItem!
   @IBOutlet weak var topTextField: UITextField!
   @IBOutlet weak var bottomTextField: UITextField!
-  @IBOutlet weak var toolbar: UIToolbar!
   @IBOutlet weak var shareButton: UIBarButtonItem!
-  
+  @IBOutlet weak var topToolbar: UIToolbar!
+  @IBOutlet weak var bottomToolbar: UIToolbar!
+
   var topTextFieldEdited: Bool!
   var bottomTextFieldEdited: Bool!
   
@@ -33,30 +34,30 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     // Do any additional setup after loading the view, typically from a nib.
     cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
     
-    self.imagePickerView.contentMode = UIViewContentMode.ScaleAspectFit
-    self.topTextField.text = "TOP"
-    self.topTextField.textAlignment = NSTextAlignment.Center
-    self.topTextField.defaultTextAttributes = memeTextAttributes
+    imagePickerView.contentMode = UIViewContentMode.ScaleAspectFit
+    topTextField.text = "TOP"
+    topTextField.textAlignment = NSTextAlignment.Center
+    topTextField.defaultTextAttributes = memeTextAttributes
     topTextFieldEdited = false
     
-    self.topTextField.delegate = self
-    self.bottomTextField.text = "BOTTOM"
-    self.bottomTextField.textAlignment = NSTextAlignment.Center
-    self.bottomTextField.delegate = self
-    self.bottomTextField.defaultTextAttributes = memeTextAttributes
+    topTextField.delegate = self
+    bottomTextField.text = "BOTTOM"
+    bottomTextField.textAlignment = NSTextAlignment.Center
+    bottomTextField.delegate = self
+    bottomTextField.defaultTextAttributes = memeTextAttributes
     bottomTextFieldEdited = false
     
-    self.shareButton.enabled = false
+    shareButton.enabled = false
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    self.subscribeToKeyboardNotifications()
+    subscribeToKeyboardNotifications()
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    self.unsubscribeFromKeyboardNotifications()
+    unsubscribeFromKeyboardNotifications()
   }
   
   func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
@@ -133,8 +134,8 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
   
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
     if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-      self.imagePickerView.image = image
-      self.shareButton.enabled = true
+      imagePickerView.image = image
+      shareButton.enabled = true
     }
     self.dismissViewControllerAnimated(true, completion: nil)
   }
@@ -152,12 +153,19 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
   }
   
   func generateMemedImage() -> UIImage {
-    toolbar.hidden = true
+    // Hide top and bottom toolbars
+    topToolbar.hidden = true
+    bottomToolbar.hidden = true
+    
+    // Get the image from screen
     UIGraphicsBeginImageContext(self.view.frame.size)
     self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
     let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
-    toolbar.hidden = false
+    
+    // Show top and bottom toolbars
+    topToolbar.hidden = false
+    bottomToolbar.hidden = false
     
     return memedImage
   }
