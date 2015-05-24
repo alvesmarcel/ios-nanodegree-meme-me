@@ -51,16 +51,6 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     shareButton.enabled = false
   }
   
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    subscribeToKeyboardNotifications()
-  }
-  
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-    unsubscribeFromKeyboardNotifications()
-  }
-  
   func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
     if (textField.tag == 3) {
       if (!topTextFieldEdited) {
@@ -68,6 +58,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         topTextFieldEdited = true
       }
     } else if (textField.tag == 4) {
+      subscribeToKeyboardNotifications()
       if (!bottomTextFieldEdited) {
         textField.text = ""
         bottomTextFieldEdited = true
@@ -78,6 +69,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     textField.resignFirstResponder()
+    unsubscribeFromKeyboardNotifications()
     return true
   }
   
