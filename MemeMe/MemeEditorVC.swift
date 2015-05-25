@@ -159,7 +159,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     return keyboardSize.CGRectValue().height
   }
 
-  // Selects and present view controller to pick an image 
+  // Selects and present view controller to pick an image
   // (the tag identifies if the event comes from the camera button or from the album button)
   @IBAction func pickAnImage(sender: AnyObject) {
     let imagePicker = UIImagePickerController()
@@ -175,13 +175,16 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     presentViewController(imagePicker, animated: true, completion: nil)
   }
   
+  // Presents an activity view to share the created meme
   @IBAction func shareMeme(sender: AnyObject) {
     let memedImage = self.generateMemedImage()
     let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
     self.presentViewController(activityVC, animated: true, completion: nil)
     activityVC.completionWithItemsHandler = {
       (activity, success, items, error) in
-      self.save()
+      if (success) {
+        self.save() // The meme is saved only if the operation was succesful
+      }
       self.dismissViewControllerAnimated(true, completion: nil)
     }
   }
