@@ -17,6 +17,11 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
   override func viewDidLoad() {
     super.viewDidLoad()
     self.title = "Sent Memes"
+    
+    // Remove title from tabBar item
+    let tabItems = self.tabBarController!.tabBar.items as! [UITabBarItem]
+    let tabItem = tabItems[1] as UITabBarItem
+    tabItem.title = ""
   }
   
   override func viewWillAppear(animated: Bool) {
