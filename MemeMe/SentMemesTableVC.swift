@@ -13,6 +13,11 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
   var memes: [Meme]!
   @IBOutlet weak var tableView: UITableView!
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.title = "Sent Memes"
+  }
+  
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     

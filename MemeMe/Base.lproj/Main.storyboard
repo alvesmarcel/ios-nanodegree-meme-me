@@ -124,10 +124,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="Umm-gJ-6V9"/>
-                        <barButtonItem title="Item" id="Jje-8Y-1ls"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Tju-rs-vTb">
                         <barButtonItem key="leftBarButtonItem" title="Edit" id="Fc6-qR-XpU">
                             <connections>
@@ -232,6 +229,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rGi-3K-pHc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="562.5" y="636"/>
+        </scene>
+        <!--Meme DetailVC-->
+        <scene sceneID="akf-7A-NOu">
+            <objects>
+                <viewController storyboardIdentifier="MemeDetailVC" id="Nid-tl-WaR" customClass="MemeDetailVC" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vPG-y7-9gF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hqs-TB-GD1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FZK-TL-Udt">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSY-6G-81m">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteMeme:" destination="Nid-tl-WaR" eventType="touchUpInside" id="o7x-b0-zzv"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zkn-Ox-fuq">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zkn-Ox-fuq" firstAttribute="centerX" secondItem="SSY-6G-81m" secondAttribute="centerX" id="V4J-dK-bia"/>
+                            <constraint firstAttribute="trailing" secondItem="Zkn-Ox-fuq" secondAttribute="trailing" id="YEz-QA-L4W"/>
+                            <constraint firstItem="Zkn-Ox-fuq" firstAttribute="leading" secondItem="FZK-TL-Udt" secondAttribute="leading" id="gHk-lY-KVW"/>
+                            <constraint firstItem="Zkn-Ox-fuq" firstAttribute="centerY" secondItem="FZK-TL-Udt" secondAttribute="centerY" id="ikX-HT-Hy3"/>
+                            <constraint firstItem="SSY-6G-81m" firstAttribute="top" secondItem="Zkn-Ox-fuq" secondAttribute="bottom" constant="19" id="kL6-uf-QO6"/>
+                            <constraint firstItem="Zkn-Ox-fuq" firstAttribute="top" secondItem="vPG-y7-9gF" secondAttribute="bottom" constant="107" id="mEi-rh-8mu"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="SSY-6G-81m"/>
+                                <exclude reference="Zkn-Ox-fuq"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="V4J-dK-bia"/>
+                                <exclude reference="YEz-QA-L4W"/>
+                                <exclude reference="gHk-lY-KVW"/>
+                                <exclude reference="ikX-HT-Hy3"/>
+                                <exclude reference="mEi-rh-8mu"/>
+                                <exclude reference="kL6-uf-QO6"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="SSY-6G-81m"/>
+                                <include reference="Zkn-Ox-fuq"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="V4J-dK-bia"/>
+                                <include reference="YEz-QA-L4W"/>
+                                <include reference="gHk-lY-KVW"/>
+                                <include reference="ikX-HT-Hy3"/>
+                                <include reference="mEi-rh-8mu"/>
+                                <include reference="kL6-uf-QO6"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="Zkn-Ox-fuq" id="g70-OE-d85"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R1u-GR-Th8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1432.5" y="-512"/>
         </scene>
         <!--Meme EditorVC-->
         <scene sceneID="ufC-wZ-h7g">
@@ -420,7 +488,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1633.5" y="276"/>
+            <point key="canvasLocation" x="1432.5" y="276"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jRP-bS-bdH">

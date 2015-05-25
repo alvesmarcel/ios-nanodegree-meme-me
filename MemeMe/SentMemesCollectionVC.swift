@@ -14,6 +14,11 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
   var collectionViewIsEditing: Bool!
   @IBOutlet weak var collectionView: UICollectionView!
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.title = "Sent Memes"
+  }
+  
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -52,7 +57,10 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
       collectionView.cellForItemAtIndexPath(indexPath)?.hidden = true // A bad temporary solution - it will be here till I find a better one
       // collectionView.deleteItemsAtIndexPaths([indexPath]) - Crashes the app
     } else {
-      
+      let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC") as! MemeDetailVC
+      detailController.meme = memes[indexPath.item]
+      detailController.memeIndex = indexPath.item
+      self.navigationController!.pushViewController(detailController, animated: true)
     }
   }
   
