@@ -5,6 +5,9 @@
 //  Created by Marcel Oliveira Alves on 5/23/15.
 //  Copyright (c) 2015 Marcel Oliveira Alves. All rights reserved.
 //
+//  The AppDelegate is storing the sent memes in an array of Meme called "memes"
+//  - Every other class can access the meme array since they have access to the AppDelegate
+//  - This is not the ideal solution but it's being used because data persistence was not yet covered in the course
 
 import UIKit
 
@@ -40,7 +43,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
-
-
 }
 

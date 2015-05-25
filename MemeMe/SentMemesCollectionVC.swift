@@ -57,10 +57,6 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     if (collectionViewIsEditing == true) {
       deleteMeme(indexPath.item)
-      // TODO: Create a better solution to delete the item cell
-      
-      collectionView.cellForItemAtIndexPath(indexPath)?.hidden = true // A bad temporary solution - it will be here till I find a better one
-      // collectionView.deleteItemsAtIndexPaths([indexPath]) - Crashes the app
     } else {
       let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC") as! MemeDetailVC
       detailController.meme = memes[indexPath.item]
@@ -78,5 +74,9 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
     let object = UIApplication.sharedApplication().delegate
     let appDelegate = object as! AppDelegate
     appDelegate.memes.removeAtIndex(index)
+    
+    // Resolving view problem
+    memes.removeAtIndex(index)
+    collectionView.reloadData()
   }
 }
