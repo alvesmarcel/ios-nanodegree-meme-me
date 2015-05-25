@@ -183,18 +183,20 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     activityVC.completionWithItemsHandler = {
       (activity, success, items, error) in
       if (success) {
-        self.save() // The meme is saved only if the operation was succesful
+        self.save() // The meme is saved only if the activity view operation was succesful
       }
       self.dismissViewControllerAnimated(true, completion: nil)
     }
   }
   
+  // Dismiss the view if the user cancel the edition
   @IBAction func cancelEdition(sender: AnyObject) {
     dismissViewControllerAnimated(true, completion: nil)
   }
 
   // UIImagePickerControllerDelegate methods
   
+  // Sets the imagePickerView image, enables the shareButton and dismiss the view after media was picked
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
     if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
       imagePickerView.image = image
@@ -203,10 +205,12 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     dismissViewControllerAnimated(true, completion: nil)
   }
 
+  // Dismiss the view if the user cancel the image picking
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
     dismissViewControllerAnimated(true, completion: nil)
   }
   
+  // Stores the meme in the AppDelegate's memes array
   func save() {
     var meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
     
@@ -215,6 +219,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     appDelegate.memes.append(meme)
   }
   
+  // Generates an image (memedImage) that is the original image with the text fields on top of it
   func generateMemedImage() -> UIImage {
     // Hide top and bottom toolbars
     topToolbar.hidden = true
