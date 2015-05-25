@@ -5,13 +5,18 @@
 //  Created by Marcel Oliveira Alves on 5/24/15.
 //  Copyright (c) 2015 Marcel Oliveira Alves. All rights reserved.
 //
+//  This ViewController is responsible for the exibition of the details of a meme. This class:
+//  - Displays a meme chosen in the SentMemesTableVC or SentMemesCollectionVC
+//  - Calls MemeEditorVC passing the meme in detail to make edition possible
+//  - Deletes the meme from the model (AppDelegate's memes array)
 
 import UIKit
 
 class MemeDetailVC: UIViewController {
   
-  var meme: Meme!
-  var memeIndex: Int!
+  var meme: Meme! // the meme to be detailed
+  var memeIndex: Int! // meme index reference in the AppDelegate's memes array to make deletion possible
+  
   @IBOutlet weak var imageView: UIImageView!
   
   override func viewDidLoad() {
@@ -20,6 +25,7 @@ class MemeDetailVC: UIViewController {
     
     imageView.contentMode = UIViewContentMode.ScaleAspectFit
     
+    // Programmatically inclusion of the Edit button (on the top right)
     let rightButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: "editMeme")
     self.navigationItem.rightBarButtonItem = rightButton
   }
@@ -34,12 +40,14 @@ class MemeDetailVC: UIViewController {
     self.navigationController?.popToRootViewControllerAnimated(true)
   }
   
+  // Calls MemeEditorVC if Edit button is tapped
   func editMeme() {
     let editController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorVC") as! MemeEditorVC
     editController.meme = meme
     self.presentViewController(editController, animated: true, completion: nil)
   }
   
+  // Deletes the meme from the model (AppDelegate's memes array) and pop the view to the root
   @IBAction func deleteMeme(sender: AnyObject) {
     let object = UIApplication.sharedApplication().delegate
     let appDelegate = object as! AppDelegate
