@@ -18,6 +18,8 @@ import UIKit
 
 class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
+  // MARK: Outlets and variables
+  
   @IBOutlet weak var imagePickerView: UIImageView!
   @IBOutlet weak var cameraButton: UIBarButtonItem!
   @IBOutlet weak var topTextField: UITextField!
@@ -41,6 +43,8 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
     NSStrokeWidthAttributeName : -4.0
   ]
+  
+  // MARK: View appearing configurations
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -94,11 +98,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
   }
   
-  // Sets attributes of a UITextField and align the text
-  func setTextAttributes(textField: UITextField) {
-    textField.defaultTextAttributes = memeTextAttributes
-    textField.textAlignment = .Center
-  }
+  // MARK: UITextFieldDelegate methods
   
   // Performs some treatment (clean text field) when the user edits the text field for the first time
   func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
@@ -129,35 +129,23 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     return true
   }
   
-  // Moves the screen up
-  func keyboardWillShow(notification: NSNotification) {
-    view.frame.origin.y -= getKeyboardHeight(notification)
+  // MARK: UIImagePickerControllerDelegate methods
+  
+  // Sets the imagePickerView image, enables the shareButton and dismiss the view after media was picked
+  func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+      imagePickerView.image = image
+      shareButton.enabled = true
+    }
+    dismissViewControllerAnimated(true, completion: nil)
   }
   
-  // Moves the screen down
-  func keyboardWillHide(notification: NSNotification) {
-    view.frame.origin.y += getKeyboardHeight(notification)
+  // Dismiss the view if the user cancel the image picking
+  func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    dismissViewControllerAnimated(true, completion: nil)
   }
   
-  // Adds observers to notification center (listens to UIKeyboardWillShowNotification and UIKeyboardWillHideNotification)
-  func subscribeToKeyboardNotifications() {
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
-  }
-  
-  // Removes observers from notification center (listens to UIKeyboardWillShowNotification and UIKeyboardWillHideNotification)
-  func unsubscribeFromKeyboardNotifications() {
-    NSNotificationCenter.defaultCenter().removeObserver(self, name:
-      UIKeyboardWillShowNotification, object: nil)
-    NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-  }
-  
-  // Find out the keyboard height
-  func getKeyboardHeight(notification: NSNotification) -> CGFloat {
-    let userInfo = notification.userInfo
-    let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
-    return keyboardSize.CGRectValue().height
-  }
+  // MARK: IBActions
 
   // Selects and present view controller to pick an image
   // (the tag identifies if the event comes from the camera button or from the album button)
@@ -193,22 +181,8 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
   @IBAction func cancelEdition(sender: AnyObject) {
     dismissViewControllerAnimated(true, completion: nil)
   }
-
-  // UIImagePickerControllerDelegate methods
   
-  // Sets the imagePickerView image, enables the shareButton and dismiss the view after media was picked
-  func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-    if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-      imagePickerView.image = image
-      shareButton.enabled = true
-    }
-    dismissViewControllerAnimated(true, completion: nil)
-  }
-
-  // Dismiss the view if the user cancel the image picking
-  func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    dismissViewControllerAnimated(true, completion: nil)
-  }
+  // MARK: Auxiliary methods
   
   // Stores the meme in the AppDelegate's memes array
   func save() {
@@ -236,6 +210,42 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     bottomToolbar.hidden = false
     
     return memedImage
+  }
+  
+  // Sets attributes of a UITextField and align the text
+  func setTextAttributes(textField: UITextField) {
+    textField.defaultTextAttributes = memeTextAttributes
+    textField.textAlignment = .Center
+  }
+  
+  // Moves the screen up
+  func keyboardWillShow(notification: NSNotification) {
+    view.frame.origin.y -= getKeyboardHeight(notification)
+  }
+  
+  // Moves the screen down
+  func keyboardWillHide(notification: NSNotification) {
+    view.frame.origin.y += getKeyboardHeight(notification)
+  }
+  
+  // Adds observers to notification center (listens to UIKeyboardWillShowNotification and UIKeyboardWillHideNotification)
+  func subscribeToKeyboardNotifications() {
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+  }
+  
+  // Removes observers from notification center (listens to UIKeyboardWillShowNotification and UIKeyboardWillHideNotification)
+  func unsubscribeFromKeyboardNotifications() {
+    NSNotificationCenter.defaultCenter().removeObserver(self, name:
+      UIKeyboardWillShowNotification, object: nil)
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+  }
+  
+  // Find out the keyboard height
+  func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+    let userInfo = notification.userInfo
+    let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+    return keyboardSize.CGRectValue().height
   }
 }
 

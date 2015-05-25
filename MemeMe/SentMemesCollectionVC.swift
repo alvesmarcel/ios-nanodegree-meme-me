@@ -14,10 +14,13 @@ import UIKit
 
 class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
   
+  // MARK: Outlets and variables
+  
   var memes: [Meme]! // memes that will be shown in the collection
   var collectionViewIsEditing: Bool! // indicates if the view is in "editing mode" (collectionViewIsEditing == true)
-  
   @IBOutlet weak var collectionView: UICollectionView!
+  
+  // MARK: View appearing configurations
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,6 +46,8 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
     collectionView.reloadData()
   }
   
+  // MARK: UICollectionViewDataSource methods
+  
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return memes.count
   }
@@ -59,6 +64,8 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
     return cell
   }
   
+  // MARK: UICollectionViewDelegate methods
+  
   // Performs different actions depending on the collectionViewIsEditing
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     // If it is in editing mode, this method should delete the meme; otherwise, it should push the MemeDetailVC
@@ -72,11 +79,15 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
     }
   }
   
+  // MARK: IBActions
+  
   // Enables editing mode when the Edit button is tapped
   @IBAction func enableEdit(sender: AnyObject) {
     collectionViewIsEditing = !collectionViewIsEditing
     collectionView.reloadData()
   }
+  
+  // MARK: Auxiliary methods
   
   // Performs the deletion of a meme from the collection view and from the model (AppDelegate's memes array)
   func deleteMeme(index: Int) {

@@ -14,8 +14,12 @@ import UIKit
 
 class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+  // MARK: Outlets and variables
+  
   var memes: [Meme]! // memes that will be shown in the table
   @IBOutlet weak var tableView: UITableView!
+  
+  // MARK: View appearing configurations
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,6 +44,8 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
     tableView.reloadData()
   }
   
+  // MARK: UITableViewDataSource methods
+  
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return memes.count
   }
@@ -55,13 +61,6 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
     return cell
   }
   
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC") as! MemeDetailVC
-    detailController.meme = memes[indexPath.row]
-    detailController.memeIndex = indexPath.row
-    self.navigationController!.pushViewController(detailController, animated: true)
-  }
-  
   // Verify editing style to make possible deleting rows (and their respective memes)
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     if editingStyle == UITableViewCellEditingStyle.Delete {
@@ -71,10 +70,23 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
   }
   
+  // MARK: UITableViewDelegate methods
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC") as! MemeDetailVC
+    detailController.meme = memes[indexPath.row]
+    detailController.memeIndex = indexPath.row
+    self.navigationController!.pushViewController(detailController, animated: true)
+  }
+  
+  // MARK: IBActions
+  
   // Enables editing (deleting) memes in the table
   @IBAction func enableEdit(sender: AnyObject) {
     tableView.editing = !tableView.editing
   }
+  
+  // MARK: Auxiliary methods
   
   // Deletes a specific meme from the AppDelegate's memes array
   func deleteMeme(index: Int) {

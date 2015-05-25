@@ -14,10 +14,13 @@ import UIKit
 
 class MemeDetailVC: UIViewController {
   
+  // MARK: Outlets and variables
+  
   var meme: Meme! // the meme to be detailed
   var memeIndex: Int! // meme index reference in the AppDelegate's memes array to make deletion possible
-  
   @IBOutlet weak var imageView: UIImageView!
+  
+  // MARK: View appearing and disappearing configurations
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,12 +43,7 @@ class MemeDetailVC: UIViewController {
     self.navigationController?.popToRootViewControllerAnimated(true)
   }
   
-  // Calls MemeEditorVC if Edit button is tapped
-  func editMeme() {
-    let editController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorVC") as! MemeEditorVC
-    editController.meme = meme
-    self.presentViewController(editController, animated: true, completion: nil)
-  }
+  // MARK: IBActions
   
   // Deletes the meme from the model (AppDelegate's memes array) and pop the view to the root
   @IBAction func deleteMeme(sender: AnyObject) {
@@ -53,5 +51,14 @@ class MemeDetailVC: UIViewController {
     let appDelegate = object as! AppDelegate
     appDelegate.memes.removeAtIndex(memeIndex)
     self.navigationController?.popToRootViewControllerAnimated(true)
+  }
+  
+  // MARK: Auxiliary methods
+  
+  // Calls MemeEditorVC if Edit button is tapped
+  func editMeme() {
+    let editController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorVC") as! MemeEditorVC
+    editController.meme = meme
+    self.presentViewController(editController, animated: true, completion: nil)
   }
 }
