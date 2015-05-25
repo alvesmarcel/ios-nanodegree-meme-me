@@ -90,6 +90,7 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="Pzc-Sa-ZFA" id="WRD-dN-USL"/>
+                                    <outlet property="delegate" destination="Pzc-Sa-ZFA" id="5K6-qZ-DHj"/>
                                 </connections>
                             </collectionView>
                         </subviews>

@@ -37,6 +37,7 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
     let meme = self.memes[indexPath.item]
     
     // Set name and image
+    cell.hidden = false
     cell.memedImage.image = meme.memedImage
     cell.deleteLabel.hidden = !collectionViewIsEditing
     
@@ -44,7 +45,15 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
   }
   
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    
+    if (collectionViewIsEditing == true) {
+      deleteMeme(indexPath.item)
+      // TODO: Create a better solution to delete the item cell
+      
+      collectionView.cellForItemAtIndexPath(indexPath)?.hidden = true // A bad temporary solution - it will be here till I find a better one
+      // collectionView.deleteItemsAtIndexPaths([indexPath]) - Crashes the app
+    } else {
+      
+    }
   }
   
   @IBAction func enableEdit(sender: AnyObject) {
