@@ -172,8 +172,8 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
       (activity, success, items, error) in
       if (success) {
         self.save() // The meme is saved only if the activity view operation was succesful
+        self.dismissViewControllerAnimated(true, completion: nil)
       }
-      self.dismissViewControllerAnimated(true, completion: nil)
     }
   }
   
