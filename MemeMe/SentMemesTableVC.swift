@@ -47,8 +47,11 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
     return cell
   }
   
-  func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-    
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC") as! MemeDetailVC
+    detailController.meme = memes[indexPath.row]
+    detailController.memeIndex = indexPath.row
+    self.navigationController!.pushViewController(detailController, animated: true)
   }
   
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

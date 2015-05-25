@@ -171,6 +171,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="hn7-fN-hcf" id="zP5-QC-fjz"/>
+                                    <outlet property="delegate" destination="hn7-fN-hcf" id="3ft-Zr-9Po"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -239,6 +240,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Hqs-TB-GD1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FZK-TL-Udt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSY-6G-81m">
@@ -270,12 +272,12 @@
                                 <exclude reference="Zkn-Ox-fuq"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="kL6-uf-QO6"/>
                                 <exclude reference="V4J-dK-bia"/>
                                 <exclude reference="YEz-QA-L4W"/>
                                 <exclude reference="gHk-lY-KVW"/>
                                 <exclude reference="ikX-HT-Hy3"/>
                                 <exclude reference="mEi-rh-8mu"/>
-                                <exclude reference="kL6-uf-QO6"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -284,12 +286,12 @@
                                 <include reference="Zkn-Ox-fuq"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="kL6-uf-QO6"/>
                                 <include reference="V4J-dK-bia"/>
                                 <include reference="YEz-QA-L4W"/>
                                 <include reference="gHk-lY-KVW"/>
                                 <include reference="ikX-HT-Hy3"/>
                                 <include reference="mEi-rh-8mu"/>
-                                <include reference="kL6-uf-QO6"/>
                             </mask>
                         </variation>
                     </view>
@@ -534,6 +536,6 @@
         <image name="tableIcon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YgR-es-k4v"/>
+        <segue reference="tbF-sd-czY"/>
     </inferredMetricsTieBreakers>
 </document>
