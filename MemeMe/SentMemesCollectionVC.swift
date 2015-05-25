@@ -11,6 +11,7 @@ import UIKit
 class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
   
   var memes: [Meme]!
+  var collectionViewIsEditing: Bool!
   @IBOutlet weak var collectionView: UICollectionView!
   
   override func viewWillAppear(animated: Bool) {
@@ -23,6 +24,7 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
     
     // collectionView configuration and reloading - needed to update the items
     collectionView.backgroundColor = UIColor.whiteColor()
+    collectionViewIsEditing = false
     collectionView.reloadData()
   }
   
@@ -31,18 +33,23 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! UICollectionViewCell
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! MemeCollectionViewCell
     let meme = self.memes[indexPath.item]
     
     // Set name and image
-    let imageView = UIImageView(image: meme.memedImage)
-    cell.backgroundView = imageView
+    cell.memedImage.image = meme.memedImage
+    cell.deleteLabel.hidden = !collectionViewIsEditing
     
     return cell
   }
   
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     
+  }
+  
+  @IBAction func enableEdit(sender: AnyObject) {
+    collectionViewIsEditing = !collectionViewIsEditing
+    collectionView.reloadData()
   }
   
   func deleteMeme(index: Int) {

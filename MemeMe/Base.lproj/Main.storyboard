@@ -46,14 +46,46 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="3g7-LA-Of3">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="TZm-AO-Aap" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NVa-wL-Rkz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                    </variation>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DELETE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uoc-XR-XYo">
+                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="13" y="39" width="74" height="21"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="NVa-wL-Rkz"/>
+                                                <exclude reference="Uoc-XR-XYo"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="subviews">
+                                                <include reference="NVa-wL-Rkz"/>
+                                                <include reference="Uoc-XR-XYo"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="deleteLabel" destination="Uoc-XR-XYo" id="dm7-mU-mhd"/>
+                                            <outlet property="memedImage" destination="NVa-wL-Rkz" id="gSa-v8-XcY"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -91,21 +123,30 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="Umm-gJ-6V9"/>
+                        <barButtonItem title="Item" id="Jje-8Y-1ls"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="Tju-rs-vTb">
-                        <barButtonItem key="leftBarButtonItem" title="Edit" id="Fc6-qR-XpU"/>
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="Fc6-qR-XpU">
+                            <connections>
+                                <action selector="enableEdit:" destination="Pzc-Sa-ZFA" id="8Mz-xN-Prt"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wvg-eh-OE9">
                             <connections>
                                 <segue destination="vXZ-lx-hvc" kind="presentation" id="YgR-es-k4v"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="qeb-Eg-6Sw" id="ltR-SH-cfI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DS4-9y-r4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="562.5" y="-92"/>
+            <point key="canvasLocation" x="561" y="-92"/>
         </scene>
         <!--Sent Memes TableVC-->
         <scene sceneID="cCN-uQ-st8">
