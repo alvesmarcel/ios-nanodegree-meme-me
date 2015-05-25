@@ -29,8 +29,15 @@ class MemeDetailVC: UIViewController {
     imageView.image = meme.memedImage
   }
   
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.navigationController?.popToRootViewControllerAnimated(true)
+  }
+  
   func editMeme() {
-    
+    let editController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorVC") as! MemeEditorVC
+    editController.meme = meme
+    self.presentViewController(editController, animated: true, completion: nil)
   }
   
   @IBAction func deleteMeme(sender: AnyObject) {

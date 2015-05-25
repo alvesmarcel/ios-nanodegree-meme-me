@@ -18,6 +18,8 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
   @IBOutlet weak var shareButton: UIBarButtonItem!
   @IBOutlet weak var topToolbar: UIToolbar!
   @IBOutlet weak var bottomToolbar: UIToolbar!
+  
+  var meme: Meme!
 
   var topTextFieldEdited: Bool!
   var bottomTextFieldEdited: Bool!
@@ -35,24 +37,50 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     // Disable cameraButton if the camera is not avaible
     cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
     
+    topTextField.delegate = self
+    bottomTextField.delegate = self
+    
+    setTextAttributes(topTextField)
+    setTextAttributes(bottomTextField)
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
     // imagePickerView initial configuration
     imagePickerView.contentMode = UIViewContentMode.ScaleAspectFit
     imagePickerView.backgroundColor = UIColor.darkGrayColor()
     
-    // Set topTextField initial configuration and delegate
-    topTextField.text = "TOP"
-    topTextFieldEdited = false
-    topTextField.delegate = self
-    setTextAttributes(topTextField)
+    if (meme == nil) {
+      // Set topTextField initial configuration and delegate
+      topTextField.text = "TOP"
+      topTextFieldEdited = false
+      
+      // Set bottomTextField initial configuration and delegate
+      bottomTextField.text = "BOTTOM"
+      bottomTextFieldEdited = false
+      
+    } else {
+      topTextField.text = meme.topText
+      topTextFieldEdited = true
+      
+      bottomTextField.text = meme.bottomText
+      bottomTextFieldEdited = true
+      
+      imagePickerView.image = meme.originalImage
+    }
     
-    // Set bottomTextField initial configuration and delegate
-    bottomTextField.text = "BOTTOM"
-    bottomTextFieldEdited = false
-    bottomTextField.delegate = self
-    setTextAttributes(bottomTextField)
     
     // shareButton should be enabled only when there's an image selected
-    shareButton.enabled = false
+    if (imagePickerView.image == nil) {
+      topTextField.hidden = true
+      bottomTextField.hidden = true
+      shareButton.enabled = false
+    } else {
+      topTextField.hidden = false
+      bottomTextField.hidden = false
+      shareButton.enabled = true
+    }
+    
   }
   
   func setTextAttributes(textField: UITextField) {
