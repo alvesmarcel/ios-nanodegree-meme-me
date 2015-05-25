@@ -5,12 +5,12 @@
 //  Created by Marcel Oliveira Alves on 5/23/15.
 //  Copyright (c) 2015 Marcel Oliveira Alves. All rights reserved.
 //
-//  This ViewController is responsible for the meme edition. It is possible to:
-//  - Choose a picture from camera or from the photo album
+//  This ViewController is responsible for the meme edition. This class:
+//  - Chooses a picture from camera or from the photo album
 //  -- If the editor is called from the MemeDetail, the picture will already be chosen (it will be the one in the MemeDetailView)
-//  - Change the topText (initially set as "TOP") and the bottomText (initially set as "BOTTOM")
+//  - Changes the topText (initially set as "TOP") and the bottomText (initially set as "BOTTOM")
 //  -- If the editor is called from the MemeDetail, the texts will already be chosen (it will be the ones in the MemeDetailView)
-//  - Share the created meme using the share button (top left)
+//  - Shares the created meme using the share button (top left)
 //  
 //  After the meme is shared, it will be stored in the memes array of AppDelegate and the view is dismissed
 

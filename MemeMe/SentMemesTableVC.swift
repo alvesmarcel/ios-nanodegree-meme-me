@@ -5,19 +5,23 @@
 //  Created by Marcel Oliveira Alves on 5/24/15.
 //  Copyright (c) 2015 Marcel Oliveira Alves. All rights reserved.
 //
+//  This ViewController is responsible for the table exibition of the sent (shared) memes. This class:
+//  - Displays the memes in a table
+//  - Performs a push transition to MemeDetailVC if a row is selected
+//  - Deletes the meme from the table and from the model (AppDelegate's memes array)
 
 import UIKit
 
 class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-  
-  var memes: [Meme]!
+
+  var memes: [Meme]! // memes that will be shown in the table
   @IBOutlet weak var tableView: UITableView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     self.title = "Sent Memes"
     
-    // Remove title from tabBar item
+    // Removes title from tabBar item
     let tabItems = self.tabBarController!.tabBar.items as! [UITabBarItem]
     let tabItem = tabItems[0] as UITabBarItem
     tabItem.title = ""
@@ -41,11 +45,10 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    // TODO: set new size for image in cell
     let cell = tableView.dequeueReusableCellWithIdentifier("tableCell") as! UITableViewCell
     let meme = self.memes[indexPath.row]
     
-    // Set name and image
+    // Sets name and image
     cell.textLabel?.text = meme.topText + " " + meme.bottomText
     cell.imageView?.image = meme.memedImage
     
@@ -59,6 +62,7 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
     self.navigationController!.pushViewController(detailController, animated: true)
   }
   
+  // Verify editing style to make possible deleting rows (and their respective memes)
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     if editingStyle == UITableViewCellEditingStyle.Delete {
       memes.removeAtIndex(indexPath.row)
@@ -67,10 +71,12 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
   }
   
+  // Enables editing (deleting) memes in the table
   @IBAction func enableEdit(sender: AnyObject) {
     tableView.editing = !tableView.editing
   }
   
+  // Deletes a specific meme from the AppDelegate's memes array
   func deleteMeme(index: Int) {
     let object = UIApplication.sharedApplication().delegate
     let appDelegate = object as! AppDelegate
