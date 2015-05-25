@@ -21,7 +21,8 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
     let appDelegate = object as! AppDelegate
     memes = appDelegate.memes
     
-    // Update table when the view appears
+    // tableView configuration and reloading - needed to update the items
+    tableView.editing = false
     tableView.reloadData()
   }
   
@@ -51,6 +52,10 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
       deleteMeme(indexPath.row)
     }
+  }
+  
+  @IBAction func enableEdit(sender: AnyObject) {
+    tableView.editing = !tableView.editing
   }
   
   func deleteMeme(index: Int) {

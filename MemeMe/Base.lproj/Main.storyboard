@@ -92,6 +92,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Tju-rs-vTb">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="Fc6-qR-XpU"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wvg-eh-OE9">
                             <connections>
                                 <segue destination="vXZ-lx-hvc" kind="presentation" id="YgR-es-k4v"/>
@@ -171,6 +172,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="SCd-M2-AHp">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="7mD-df-Cfl">
+                            <connections>
+                                <action selector="enableEdit:" destination="hn7-fN-hcf" id="kya-Um-WBF"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wKj-mN-Z6U">
                             <connections>
                                 <segue destination="vXZ-lx-hvc" kind="presentation" id="tbF-sd-czY"/>

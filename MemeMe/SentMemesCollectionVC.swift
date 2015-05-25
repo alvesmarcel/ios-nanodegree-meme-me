@@ -21,9 +21,9 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
     let appDelegate = object as! AppDelegate
     memes = appDelegate.memes
     
-    // Update collection when the view appears
-    collectionView.reloadData()
+    // collectionView configuration and reloading - needed to update the items
     collectionView.backgroundColor = UIColor.whiteColor()
+    collectionView.reloadData()
   }
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
