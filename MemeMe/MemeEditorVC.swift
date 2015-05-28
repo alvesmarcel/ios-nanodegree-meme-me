@@ -97,6 +97,11 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
 		}
 	}
 	
+	// Hides status bar
+	override func prefersStatusBarHidden() -> Bool {
+		return true
+	}
+	
 	// MARK: UITextFieldDelegate methods
 	
 	// Performs some treatment (clean text field) when the user edits the text field for the first time
