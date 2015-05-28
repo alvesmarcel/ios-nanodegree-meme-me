@@ -11,6 +11,6 @@
 import UIKit
 
 class MemeCollectionViewCell: UICollectionViewCell {
-  @IBOutlet weak var memedImage: UIImageView!
-  @IBOutlet weak var deleteLabel: UILabel!
+	@IBOutlet weak var memedImage: UIImageView!
+	@IBOutlet weak var deleteLabel: UILabel!
 }
