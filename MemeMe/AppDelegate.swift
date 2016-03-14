@@ -5,9 +5,6 @@
 //  Created by Marcel Oliveira Alves on 5/23/15.
 //  Copyright (c) 2015 Marcel Oliveira Alves. All rights reserved.
 //
-//  The AppDelegate is storing the sent memes in an array of Meme called "memes"
-//  - Every other class can access the meme array since they have access to the AppDelegate
-//  - This is not the ideal solution but it's being used because data persistence was not yet covered in the course
 
 import UIKit
 
@@ -15,6 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	var window: UIWindow?
+	
+	// TODO: Remove this array from here
 	var memes = [Meme]()
 	
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="-1228.5" y="276"/>
         </scene>
-        <!--Sent Memes CollectionVC-->
+        <!--Sent Memes Collection View Controller-->
         <scene sceneID="DeL-0J-JQF">
             <objects>
-                <viewController id="Pzc-Sa-ZFA" customClass="SentMemesCollectionVC" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Pzc-Sa-ZFA" customClass="SentMemesCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bE7-LA-lIb"/>
                         <viewControllerLayoutGuide type="bottom" id="ISg-vb-ZQu"/>
@@ -148,10 +148,10 @@
             </objects>
             <point key="canvasLocation" x="561" y="-92"/>
         </scene>
-        <!--Sent Memes TableVC-->
+        <!--Sent Memes Table View Controller-->
         <scene sceneID="cCN-uQ-st8">
             <objects>
-                <viewController id="hn7-fN-hcf" customClass="SentMemesTableVC" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hn7-fN-hcf" customClass="SentMemesTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ifg-8H-iQ5"/>
                         <viewControllerLayoutGuide type="bottom" id="FOe-BY-xKE"/>
@@ -192,12 +192,12 @@
                                 <exclude reference="6oF-r1-Unq"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="E36-nq-DEP"/>
                                 <exclude reference="10r-zO-PRy"/>
                                 <exclude reference="4yx-Cc-qmc"/>
                                 <exclude reference="ATx-rQ-4dR"/>
                                 <exclude reference="EIc-ql-os8"/>
                                 <exclude reference="hOn-1v-Mzg"/>
-                                <exclude reference="E36-nq-DEP"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -205,12 +205,12 @@
                                 <include reference="6oF-r1-Unq"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="E36-nq-DEP"/>
                                 <exclude reference="10r-zO-PRy"/>
                                 <exclude reference="4yx-Cc-qmc"/>
                                 <include reference="ATx-rQ-4dR"/>
                                 <include reference="EIc-ql-os8"/>
                                 <include reference="hOn-1v-Mzg"/>
-                                <include reference="E36-nq-DEP"/>
                             </mask>
                         </variation>
                     </view>
@@ -234,10 +234,10 @@
             </objects>
             <point key="canvasLocation" x="562.5" y="636"/>
         </scene>
-        <!--Meme DetailVC-->
+        <!--Meme Detail View Controller-->
         <scene sceneID="akf-7A-NOu">
             <objects>
-                <viewController storyboardIdentifier="MemeDetailVC" id="Nid-tl-WaR" customClass="MemeDetailVC" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeDetailViewController" id="Nid-tl-WaR" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vPG-y7-9gF"/>
                         <viewControllerLayoutGuide type="bottom" id="Hqs-TB-GD1"/>
@@ -300,6 +300,10 @@
                                 <exclude reference="C1e-uP-A8V"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="rG0-MF-em5"/>
+                                <exclude reference="wEg-TZ-tjP"/>
+                                <exclude reference="ZAe-a8-V2v"/>
+                                <exclude reference="vNi-vA-flT"/>
                                 <exclude reference="BTE-UT-V9m"/>
                                 <exclude reference="EEa-2h-d1f"/>
                                 <exclude reference="JaL-lG-0sP"/>
@@ -313,10 +317,6 @@
                                 <exclude reference="ikX-HT-Hy3"/>
                                 <exclude reference="mEi-rh-8mu"/>
                                 <exclude reference="n7p-3g-q35"/>
-                                <exclude reference="ZAe-a8-V2v"/>
-                                <exclude reference="vNi-vA-flT"/>
-                                <exclude reference="rG0-MF-em5"/>
-                                <exclude reference="wEg-TZ-tjP"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -325,6 +325,10 @@
                                 <include reference="C1e-uP-A8V"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="rG0-MF-em5"/>
+                                <exclude reference="wEg-TZ-tjP"/>
+                                <include reference="ZAe-a8-V2v"/>
+                                <include reference="vNi-vA-flT"/>
                                 <exclude reference="BTE-UT-V9m"/>
                                 <include reference="EEa-2h-d1f"/>
                                 <exclude reference="JaL-lG-0sP"/>
@@ -338,10 +342,6 @@
                                 <exclude reference="ikX-HT-Hy3"/>
                                 <exclude reference="mEi-rh-8mu"/>
                                 <exclude reference="n7p-3g-q35"/>
-                                <include reference="ZAe-a8-V2v"/>
-                                <include reference="vNi-vA-flT"/>
-                                <include reference="rG0-MF-em5"/>
-                                <exclude reference="wEg-TZ-tjP"/>
                             </mask>
                         </variation>
                     </view>
@@ -353,10 +353,10 @@
             </objects>
             <point key="canvasLocation" x="1432.5" y="-512"/>
         </scene>
-        <!--Meme EditorVC-->
+        <!--Meme Editor View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="MemeEditorVC" id="vXZ-lx-hvc" customClass="MemeEditorVC" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeEditorVC" id="vXZ-lx-hvc" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -482,15 +482,8 @@
                                 <exclude reference="Crb-xU-mze"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="1B4-0J-Xdq"/>
-                                <exclude reference="5TN-jR-6Cg"/>
-                                <exclude reference="LNz-6X-FTX"/>
-                                <exclude reference="RnD-cL-X2o"/>
-                                <exclude reference="hQu-DB-Ymb"/>
-                                <exclude reference="OgJ-Vf-04Y"/>
-                                <exclude reference="Trp-CS-Zxg"/>
-                                <exclude reference="mnQ-a1-Cnz"/>
-                                <exclude reference="zr7-JV-TEb"/>
+                                <exclude reference="7LQ-LD-ZvY"/>
+                                <exclude reference="YAO-4B-3WH"/>
                                 <exclude reference="MYq-JK-d8k"/>
                                 <exclude reference="NXf-aj-yWk"/>
                                 <exclude reference="jpg-XG-hzN"/>
@@ -501,8 +494,15 @@
                                 <exclude reference="IUl-3A-a79"/>
                                 <exclude reference="KWa-vK-3Xh"/>
                                 <exclude reference="aOX-Rc-oag"/>
-                                <exclude reference="7LQ-LD-ZvY"/>
-                                <exclude reference="YAO-4B-3WH"/>
+                                <exclude reference="OgJ-Vf-04Y"/>
+                                <exclude reference="Trp-CS-Zxg"/>
+                                <exclude reference="mnQ-a1-Cnz"/>
+                                <exclude reference="zr7-JV-TEb"/>
+                                <exclude reference="1B4-0J-Xdq"/>
+                                <exclude reference="5TN-jR-6Cg"/>
+                                <exclude reference="LNz-6X-FTX"/>
+                                <exclude reference="RnD-cL-X2o"/>
+                                <exclude reference="hQu-DB-Ymb"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -514,15 +514,8 @@
                                 <include reference="Crb-xU-mze"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="1B4-0J-Xdq"/>
-                                <include reference="5TN-jR-6Cg"/>
-                                <exclude reference="LNz-6X-FTX"/>
-                                <exclude reference="RnD-cL-X2o"/>
-                                <include reference="hQu-DB-Ymb"/>
-                                <exclude reference="OgJ-Vf-04Y"/>
-                                <include reference="Trp-CS-Zxg"/>
-                                <include reference="mnQ-a1-Cnz"/>
-                                <include reference="zr7-JV-TEb"/>
+                                <include reference="7LQ-LD-ZvY"/>
+                                <include reference="YAO-4B-3WH"/>
                                 <include reference="MYq-JK-d8k"/>
                                 <include reference="NXf-aj-yWk"/>
                                 <include reference="jpg-XG-hzN"/>
@@ -533,8 +526,15 @@
                                 <include reference="IUl-3A-a79"/>
                                 <include reference="KWa-vK-3Xh"/>
                                 <include reference="aOX-Rc-oag"/>
-                                <include reference="7LQ-LD-ZvY"/>
-                                <include reference="YAO-4B-3WH"/>
+                                <exclude reference="OgJ-Vf-04Y"/>
+                                <include reference="Trp-CS-Zxg"/>
+                                <include reference="mnQ-a1-Cnz"/>
+                                <include reference="zr7-JV-TEb"/>
+                                <include reference="1B4-0J-Xdq"/>
+                                <include reference="5TN-jR-6Cg"/>
+                                <exclude reference="LNz-6X-FTX"/>
+                                <exclude reference="RnD-cL-X2o"/>
+                                <include reference="hQu-DB-Ymb"/>
                             </mask>
                         </variation>
                     </view>
@@ -596,6 +596,6 @@
         <image name="tableIcon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YgR-es-k4v"/>
+        <segue reference="tbF-sd-czY"/>
     </inferredMetricsTieBreakers>
 </document>

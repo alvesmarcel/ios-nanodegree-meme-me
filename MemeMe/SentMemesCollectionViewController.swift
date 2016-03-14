@@ -1,26 +1,29 @@
 //
-//  SentMemesCollectionVC.swift
+//  SentMemesCollectionViewController.swift
 //  MemeMe
 //
 //  Created by Marcel Oliveira Alves on 5/24/15.
 //  Copyright (c) 2015 Marcel Oliveira Alves. All rights reserved.
 //
-//  This ViewController is responsible for the collection exibition of the sent (shared) memes. This class:
+//  This View Controller is responsible for the collection exibition of the sent (shared) memes. This class:
 //  - Displays the memes in a collection
-//  - Performs a push transition to MemeDetailVC if an item is selected
-//  - Deletes the meme from the collection and from the model (AppDelegate's memes array)
+//  - Performs a push transition to MemeDetailViewController if an item is selected
+//  - Deletes the meme from the collection and from the model
 
 import UIKit
 
-class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class SentMemesCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 	
-	// MARK: Outlets and variables
+	// MARK: Outlets
+	
+	@IBOutlet weak var collectionView: UICollectionView!
+	
+	// MARK: Class variables
 	
 	var memes: [Meme]! // memes that will be shown in the collection
 	var collectionViewIsEditing: Bool! // indicates if the view is in "editing mode" (collectionViewIsEditing == true)
-	@IBOutlet weak var collectionView: UICollectionView!
 	
-	// MARK: View appearing configurations
+	// MARK: Lifecycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -72,7 +75,7 @@ class SentMemesCollectionVC: UIViewController, UICollectionViewDataSource, UICol
 		if (collectionViewIsEditing == true) {
 			deleteMeme(indexPath.item)
 		} else {
-			let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC") as! MemeDetailVC
+			let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
 			detailController.meme = memes[indexPath.item]
 			detailController.memeIndex = indexPath.item
 			self.navigationController!.pushViewController(detailController, animated: true)

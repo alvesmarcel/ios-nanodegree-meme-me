@@ -1,26 +1,29 @@
 //
-//  MemeDetailVC.swift
+//  MemeDetailViewController.swift
 //  MemeMe
 //
 //  Created by Marcel Oliveira Alves on 5/24/15.
 //  Copyright (c) 2015 Marcel Oliveira Alves. All rights reserved.
 //
-//  This ViewController is responsible for the exibition of the details of a meme. This class:
+//  This View Controller is responsible for the exibition of the details of a meme. This class:
 //  - Displays a meme chosen in the SentMemesTableVC or SentMemesCollectionVC
-//  - Calls MemeEditorVC passing the meme in detail to make edition possible
-//  - Deletes the meme from the model (AppDelegate's memes array)
+//  - Calls MemeEditorViewController passing the meme in detail to make edition possible
+//  - Deletes the meme from the model
 
 import UIKit
 
-class MemeDetailVC: UIViewController {
+class MemeDetailViewController: UIViewController {
 	
-	// MARK: Outlets and variables
+	// MARK: Outlets
 	
-	var meme: Meme! // the meme to be detailed
-	var memeIndex: Int! // meme index reference in the AppDelegate's memes array to make deletion possible
 	@IBOutlet weak var imageView: UIImageView!
 	
-	// MARK: View appearing and disappearing configurations
+	// MARK: Class variables
+	
+	var meme: Meme!
+	var memeIndex: Int! // meme index reference in the AppDelegate's memes array to make deletion possible
+	
+	// MARK: Lifecycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -53,11 +56,9 @@ class MemeDetailVC: UIViewController {
 		self.navigationController?.popToRootViewControllerAnimated(true)
 	}
 	
-	// MARK: Auxiliary methods
-	
 	// Calls MemeEditorVC if Edit button is tapped
 	func editMeme() {
-		let editController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorVC") as! MemeEditorVC
+		let editController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
 		editController.meme = meme
 		self.presentViewController(editController, animated: true, completion: nil)
 	}

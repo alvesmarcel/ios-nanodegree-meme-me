@@ -1,5 +1,5 @@
 //
-//  MemeEditorVC.swift
+//  MemeEditorViewController.swift
 //  MemeMe
 //
 //  Created by Marcel Oliveira Alves on 5/23/15.
@@ -16,9 +16,9 @@
 
 import UIKit
 
-class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 	
-	// MARK: Outlets and variables
+	// MARK: Outlets
 	
 	@IBOutlet weak var imagePickerView: UIImageView!
 	@IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -27,6 +27,8 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
 	@IBOutlet weak var shareButton: UIBarButtonItem!
 	@IBOutlet weak var topToolbar: UIToolbar!
 	@IBOutlet weak var bottomToolbar: UIToolbar!
+	
+	// MARK: Class variables
 	
 	// If MemeEditorVC is called from MemeDetailVC, this meme is initialized; otherwise, it will be nil
 	// It is used to edit an already existing meme
@@ -186,7 +188,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
 		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
-	// MARK: Auxiliary methods
+	// MARK: Helper methods
 	
 	// Stores the meme in the AppDelegate's memes array
 	func save() {

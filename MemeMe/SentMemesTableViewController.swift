@@ -1,5 +1,5 @@
 //
-//  SentMemesTableVC.swift
+//  SentMemesTableViewController.swift
 //  MemeMe
 //
 //  Created by Marcel Oliveira Alves on 5/24/15.
@@ -12,14 +12,17 @@
 
 import UIKit
 
-class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SentMemesTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	
-	// MARK: Outlets and variables
+	// MARK: Outlets
 	
-	var memes: [Meme]! // memes that will be shown in the table
 	@IBOutlet weak var tableView: UITableView!
 	
-	// MARK: View appearing configurations
+	// MARK: Class variables
+	
+	var memes: [Meme]! // memes that will be shown in the table
+	
+	// MARK: Lifecycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -73,7 +76,7 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
 	// MARK: UITableViewDelegate methods
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC") as! MemeDetailVC
+		let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
 		detailController.meme = memes[indexPath.row]
 		detailController.memeIndex = indexPath.row
 		self.navigationController!.pushViewController(detailController, animated: true)
@@ -86,7 +89,7 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
 		tableView.editing = !tableView.editing
 	}
 	
-	// MARK: Auxiliary methods
+	// MARK: Helper methods
 	
 	// Deletes a specific meme from the AppDelegate's memes array
 	func deleteMeme(index: Int) {
