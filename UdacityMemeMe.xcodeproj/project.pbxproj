@@ -31,14 +31,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		28B98EE71B110F90003A9B73 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28B98EE71B110F90003A9B73 /* UdacityMemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UdacityMemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28B98EEB1B110F90003A9B73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28B98EEC1B110F90003A9B73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28B98EEE1B110F90003A9B73 /* MemeEditorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeEditorVC.swift; sourceTree = "<group>"; };
 		28B98EF11B110F90003A9B73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		28B98EF31B110F90003A9B73 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		28B98EF61B110F90003A9B73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		28B98EFC1B110F90003A9B73 /* MemeMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemeMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		28B98EFC1B110F90003A9B73 /* UdacityMemeMe.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UdacityMemeMe.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28B98F011B110F90003A9B73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28B98F021B110F90003A9B73 /* MemeMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMeTests.swift; sourceTree = "<group>"; };
 		28B98F0C1B11286D003A9B73 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
@@ -106,8 +106,8 @@
 		28B98EE81B110F90003A9B73 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				28B98EE71B110F90003A9B73 /* MemeMe.app */,
-				28B98EFC1B110F90003A9B73 /* MemeMeTests.xctest */,
+				28B98EE71B110F90003A9B73 /* UdacityMemeMe.app */,
+				28B98EFC1B110F90003A9B73 /* UdacityMemeMe.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,9 +162,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		28B98EE61B110F90003A9B73 /* MemeMe */ = {
+		28B98EE61B110F90003A9B73 /* UdacityMemeMe */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28B98F061B110F90003A9B73 /* Build configuration list for PBXNativeTarget "MemeMe" */;
+			buildConfigurationList = 28B98F061B110F90003A9B73 /* Build configuration list for PBXNativeTarget "UdacityMemeMe" */;
 			buildPhases = (
 				28B98EE31B110F90003A9B73 /* Sources */,
 				28B98EE41B110F90003A9B73 /* Frameworks */,
@@ -174,14 +174,14 @@
 			);
 			dependencies = (
 			);
-			name = MemeMe;
+			name = UdacityMemeMe;
 			productName = MemeMe;
-			productReference = 28B98EE71B110F90003A9B73 /* MemeMe.app */;
+			productReference = 28B98EE71B110F90003A9B73 /* UdacityMemeMe.app */;
 			productType = "com.apple.product-type.application";
 		};
-		28B98EFB1B110F90003A9B73 /* MemeMeTests */ = {
+		28B98EFB1B110F90003A9B73 /* UdacityMemeMeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28B98F091B110F90003A9B73 /* Build configuration list for PBXNativeTarget "MemeMeTests" */;
+			buildConfigurationList = 28B98F091B110F90003A9B73 /* Build configuration list for PBXNativeTarget "UdacityMemeMeTests" */;
 			buildPhases = (
 				28B98EF81B110F90003A9B73 /* Sources */,
 				28B98EF91B110F90003A9B73 /* Frameworks */,
@@ -192,9 +192,9 @@
 			dependencies = (
 				28B98EFE1B110F90003A9B73 /* PBXTargetDependency */,
 			);
-			name = MemeMeTests;
+			name = UdacityMemeMeTests;
 			productName = MemeMeTests;
-			productReference = 28B98EFC1B110F90003A9B73 /* MemeMeTests.xctest */;
+			productReference = 28B98EFC1B110F90003A9B73 /* UdacityMemeMe.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -216,7 +216,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 28B98EE21B110F90003A9B73 /* Build configuration list for PBXProject "MemeMe" */;
+			buildConfigurationList = 28B98EE21B110F90003A9B73 /* Build configuration list for PBXProject "UdacityMemeMe" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -229,8 +229,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				28B98EE61B110F90003A9B73 /* MemeMe */,
-				28B98EFB1B110F90003A9B73 /* MemeMeTests */,
+				28B98EE61B110F90003A9B73 /* UdacityMemeMe */,
+				28B98EFB1B110F90003A9B73 /* UdacityMemeMeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -283,7 +283,7 @@
 /* Begin PBXTargetDependency section */
 		28B98EFE1B110F90003A9B73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 28B98EE61B110F90003A9B73 /* MemeMe */;
+			target = 28B98EE61B110F90003A9B73 /* UdacityMemeMe */;
 			targetProxy = 28B98EFD1B110F90003A9B73 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -397,7 +397,7 @@
 				INFOPLIST_FILE = MemeMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alvesmarcel.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = UdacityMemeMe;
 			};
 			name = Debug;
 		};
@@ -408,7 +408,7 @@
 				INFOPLIST_FILE = MemeMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alvesmarcel.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = UdacityMemeMe;
 			};
 			name = Release;
 		};
@@ -427,8 +427,8 @@
 				INFOPLIST_FILE = MemeMeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alvesmarcel.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MemeMe.app/MemeMe";
+				PRODUCT_NAME = UdacityMemeMe;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UdacityMemeMe.app/UdacityMemeMe";
 			};
 			name = Debug;
 		};
@@ -443,15 +443,15 @@
 				INFOPLIST_FILE = MemeMeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alvesmarcel.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MemeMe.app/MemeMe";
+				PRODUCT_NAME = UdacityMemeMe;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UdacityMemeMe.app/UdacityMemeMe";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		28B98EE21B110F90003A9B73 /* Build configuration list for PBXProject "MemeMe" */ = {
+		28B98EE21B110F90003A9B73 /* Build configuration list for PBXProject "UdacityMemeMe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				28B98F041B110F90003A9B73 /* Debug */,
@@ -460,7 +460,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		28B98F061B110F90003A9B73 /* Build configuration list for PBXNativeTarget "MemeMe" */ = {
+		28B98F061B110F90003A9B73 /* Build configuration list for PBXNativeTarget "UdacityMemeMe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				28B98F071B110F90003A9B73 /* Debug */,
@@ -469,7 +469,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		28B98F091B110F90003A9B73 /* Build configuration list for PBXNativeTarget "MemeMeTests" */ = {
+		28B98F091B110F90003A9B73 /* Build configuration list for PBXNativeTarget "UdacityMemeMeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				28B98F0A1B110F90003A9B73 /* Debug */,
