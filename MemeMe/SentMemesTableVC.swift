@@ -26,7 +26,7 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
 		self.title = "Sent Memes"
 		
 		// Removes title from tabBar item
-		let tabItems = self.tabBarController!.tabBar.items as! [UITabBarItem]
+		let tabItems = self.tabBarController!.tabBar.items! as [UITabBarItem]
 		let tabItem = tabItems[0] as UITabBarItem
 		tabItem.title = ""
 	}
@@ -51,7 +51,7 @@ class SentMemesTableVC: UIViewController, UITableViewDataSource, UITableViewDele
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("tableCell") as! UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("tableCell")! as UITableViewCell
 		let meme = self.memes[indexPath.row]
 		
 		// Sets name and image

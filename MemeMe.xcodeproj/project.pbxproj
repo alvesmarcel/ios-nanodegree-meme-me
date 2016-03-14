@@ -66,6 +66,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		286824ED1C96CDA300B11691 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				28B98F171B12A499003A9B73 /* MemeCollectionViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		286824EE1C96CDA900B11691 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				28B98F191B12B922003A9B73 /* MemeDetailVC.swift */,
+				28B98F151B12903C003A9B73 /* SentMemesCollectionVC.swift */,
+				28B98F131B12691C003A9B73 /* SentMemesTableVC.swift */,
+				28B98EEE1B110F90003A9B73 /* MemeEditorVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		286824EF1C96CDB000B11691 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				28B98EF01B110F90003A9B73 /* Main.storyboard */,
+				28B98EF51B110F90003A9B73 /* LaunchScreen.xib */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		28B98EDE1B110F90003A9B73 = {
 			isa = PBXGroup;
 			children = (
@@ -87,16 +115,10 @@
 		28B98EE91B110F90003A9B73 /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
-				28B98F0E1B112872003A9B73 /* Model */,
 				28B98EEC1B110F90003A9B73 /* AppDelegate.swift */,
-				28B98EEE1B110F90003A9B73 /* MemeEditorVC.swift */,
-				28B98F131B12691C003A9B73 /* SentMemesTableVC.swift */,
-				28B98F151B12903C003A9B73 /* SentMemesCollectionVC.swift */,
-				28B98F171B12A499003A9B73 /* MemeCollectionViewCell.swift */,
-				28B98F191B12B922003A9B73 /* MemeDetailVC.swift */,
-				28B98EF01B110F90003A9B73 /* Main.storyboard */,
-				28B98EF31B110F90003A9B73 /* Images.xcassets */,
-				28B98EF51B110F90003A9B73 /* LaunchScreen.xib */,
+				28B98F0E1B112872003A9B73 /* Model */,
+				286824ED1C96CDA300B11691 /* View */,
+				286824EE1C96CDA900B11691 /* Controller */,
 				28B98EEA1B110F90003A9B73 /* Supporting Files */,
 			);
 			path = MemeMe;
@@ -105,6 +127,8 @@
 		28B98EEA1B110F90003A9B73 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				286824EF1C96CDB000B11691 /* Storyboards */,
+				28B98EF31B110F90003A9B73 /* Images.xcassets */,
 				28B98EEB1B110F90003A9B73 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -179,7 +203,8 @@
 		28B98EDF1B110F90003A9B73 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Marcel Oliveira Alves";
 				TargetAttributes = {
 					28B98EE61B110F90003A9B73 = {
@@ -304,6 +329,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -370,6 +396,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MemeMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alvesmarcel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -380,6 +407,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MemeMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alvesmarcel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -398,6 +426,7 @@
 				);
 				INFOPLIST_FILE = MemeMeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alvesmarcel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MemeMe.app/MemeMe";
 			};
@@ -413,6 +442,7 @@
 				);
 				INFOPLIST_FILE = MemeMeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alvesmarcel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MemeMe.app/MemeMe";
 			};

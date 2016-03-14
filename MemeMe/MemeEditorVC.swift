@@ -136,14 +136,14 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
 	// MARK: UIImagePickerControllerDelegate methods
 	
 	// Sets the imagePickerView image, enables the shareButton and dismiss the view after media was picked
-	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
 			imagePickerView.image = image
 			shareButton.enabled = true
 		}
 		dismissViewControllerAnimated(true, completion: nil)
 	}
-	
+
 	// Dismiss the view if the user cancel the image picking
 	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 		dismissViewControllerAnimated(true, completion: nil)
@@ -190,7 +190,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
 	
 	// Stores the meme in the AppDelegate's memes array
 	func save() {
-		var meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+		let meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
 		
 		let object = UIApplication.sharedApplication().delegate
 		let appDelegate = object as! AppDelegate
@@ -229,7 +229,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
 	
 	// Moves the screen down
 	func keyboardWillHide(notification: NSNotification) {
-		view.frame.origin.y += getKeyboardHeight(notification)
+		view.frame.origin.y = 0
 	}
 	
 	// Adds observers to notification center (listens to UIKeyboardWillShowNotification and UIKeyboardWillHideNotification)
