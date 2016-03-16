@@ -1,4 +1,4 @@
-# Pitch Perfect
+# Meme Me
 
 This is the second portfolio app from Udacity iOS Developer Nanodegree. With this app, the user can choose a picture from the photo album or take the picture using the camera and overlay texts in a meme style.
 
