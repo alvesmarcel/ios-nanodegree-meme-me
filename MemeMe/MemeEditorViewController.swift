@@ -15,10 +15,15 @@
 //  After the meme is shared, it will be stored in the memes array of AppDelegate and the view is dismissed
 
 import UIKit
+import CoreData
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 	
 	// TODO: Change top bar to a navigation bar 
+	
+	var sharedContext: NSManagedObjectContext {
+		return CoreDataStackManager.sharedInstance.managedObjectContext
+	}
 	
 	// MARK: Outlets
 	
@@ -194,11 +199,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	
 	// Stores the meme in the AppDelegate's memes array
 	func save() {
-		let meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+		dispatch_async(dispatch_get_main_queue()) {
+			let _ = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.imagePickerView.image!, memedImage: self.generateMemedImage(), insertIntoManagedObjectContext: self.sharedContext)
+			CoreDataStackManager.sharedInstance.saveContext()
+		}
 		
-		let object = UIApplication.sharedApplication().delegate
-		let appDelegate = object as! AppDelegate
-		appDelegate.memes.append(meme)
+//		let meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+//		
+//		let object = UIApplication.sharedApplication().delegate
+//		let appDelegate = object as! AppDelegate
+//		appDelegate.memes.append(meme)
 	}
 	
 	// Generates an image (memedImage) that is the original image with the text fields on top of it
