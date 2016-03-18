@@ -18,7 +18,7 @@ import UIKit
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 	
-	// TODO: Change top bar to a navigation bar
+	// TODO: Change top bar to a navigation bar 
 	
 	// MARK: Outlets
 	
