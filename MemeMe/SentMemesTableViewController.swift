@@ -22,11 +22,7 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
 	// MARK: Outlets
 	
 	@IBOutlet weak var tableView: UITableView!
-	
-	// MARK: Class variables
-	
-	var memes: [Meme]! // memes that will be shown in the table
-	
+
 	// MARK: Lifecycle
 	
 	override func viewDidLoad() {
@@ -34,30 +30,19 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
 		self.title = "Sent Memes"
 		
 		// Removes title from tabBar item
-		let tabItems = self.tabBarController!.tabBar.items! as [UITabBarItem]
-		let tabItem = tabItems[0] as UITabBarItem
-		tabItem.title = ""
+//		let tabItems = self.tabBarController!.tabBar.items! as [UITabBarItem]
+//		let tabItem = tabItems[0] as UITabBarItem
+//		tabItem.title = ""
 		
 		
 		// Fetching stories to populate the table
 		do {
 			try fetchedResultsController.performFetch()
-		} catch {}
+		} catch let error as NSError {
+			print("Error performing fetch \(error.localizedDescription)")
+		}
 		
 		fetchedResultsController.delegate = self
-	}
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		// Load the memes from the AppDelegate
-		let object = UIApplication.sharedApplication().delegate
-		let appDelegate = object as! AppDelegate
-		memes = appDelegate.memes
-		
-		// tableView configuration and reloading - needed to update the items
-		tableView.editing = false
-		tableView.reloadData()
 	}
 	
 	// MARK: UITableViewDataSource methods
@@ -69,31 +54,18 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("tableCell")! as UITableViewCell
-		let meme = fetchedResultsController.objectAtIndexPath(indexPath) as! Meme
-		
-		// Sets name and image
-		cell.textLabel?.text = meme.topText + " " + meme.bottomText
-		cell.imageView?.image = meme.memedImage
-		
+		configureCell(cell, atIndexPath: indexPath)
 		return cell
-	}
-	
-	// Verify editing style to make possible deleting rows (and their respective memes)
-	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-		if editingStyle == UITableViewCellEditingStyle.Delete {
-			memes.removeAtIndex(indexPath.row)
-			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-			deleteMeme(indexPath.row)
-		}
 	}
 	
 	// MARK: UITableViewDelegate methods
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
-		detailController.meme = memes[indexPath.row]
-		detailController.memeIndex = indexPath.row
-		self.navigationController!.pushViewController(detailController, animated: true)
+		let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
+		
+		// TODO: GET MEME AND PASS TO CONTROLLER
+		
+		self.navigationController!.pushViewController(controller, animated: true)
 	}
 	
 	// MARK: IBActions
@@ -131,7 +103,43 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
 	// MARK: NSFetchedResultsControllerDelegate methods
 	
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
-		tableView.beginUpdates()
+		self.tableView.beginUpdates()
+	}
+	
+	func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+		switch type {
+		case .Insert:
+			self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+		case .Delete:
+			self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+		default:
+			return
+		}
+	}
+	
+	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+		switch type {
+		case .Insert:
+			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+		case .Delete:
+			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+		case .Update:
+			self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
+		case .Move:
+			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+		}
+	}
+	
+	func controllerDidChangeContent(controller: NSFetchedResultsController) {
+		self.tableView.endUpdates()
+	}
+	
+	func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+		// Sets name and image
+		let meme = fetchedResultsController.objectAtIndexPath(indexPath) as! Meme
+		cell.textLabel?.text = meme.topText + " " + meme.bottomText
+		cell.imageView?.image = meme.memedImage
 	}
 }
 
