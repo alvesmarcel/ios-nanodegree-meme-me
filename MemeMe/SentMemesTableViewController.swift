@@ -11,8 +11,13 @@
 //  - Deletes the meme from the table and from the model (AppDelegate's memes array)
 
 import UIKit
+import CoreData
 
-class SentMemesTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SentMemesTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+	
+	var sharedContext: NSManagedObjectContext {
+		return CoreDataStackManager.sharedInstance.managedObjectContext
+	}
 	
 	// MARK: Outlets
 	
@@ -32,6 +37,14 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
 		let tabItems = self.tabBarController!.tabBar.items! as [UITabBarItem]
 		let tabItem = tabItems[0] as UITabBarItem
 		tabItem.title = ""
+		
+		
+		// Fetching stories to populate the table
+		do {
+			try fetchedResultsController.performFetch()
+		} catch {}
+		
+		fetchedResultsController.delegate = self
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -50,12 +63,13 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
 	// MARK: UITableViewDataSource methods
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return memes.count
+		let sectionInfo = self.fetchedResultsController.sections![section]
+		return sectionInfo.numberOfObjects
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("tableCell")! as UITableViewCell
-		let meme = self.memes[indexPath.row]
+		let meme = fetchedResultsController.objectAtIndexPath(indexPath) as! Meme
 		
 		// Sets name and image
 		cell.textLabel?.text = meme.topText + " " + meme.bottomText
@@ -96,6 +110,28 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
 		let object = UIApplication.sharedApplication().delegate
 		let appDelegate = object as! AppDelegate
 		appDelegate.memes.removeAtIndex(index)
+	}
+	
+	// MARK: NSFetchedResultsController
+	
+	lazy var fetchedResultsController: NSFetchedResultsController = {
+		
+		let fetchRequest = NSFetchRequest(entityName: "Meme")
+		
+		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "topText", ascending: true)]
+		
+		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+			managedObjectContext: self.sharedContext,
+			sectionNameKeyPath: nil,
+			cacheName: nil)
+		
+		return fetchedResultsController
+	}()
+	
+	// MARK: NSFetchedResultsControllerDelegate methods
+	
+	func controllerWillChangeContent(controller: NSFetchedResultsController) {
+		tableView.beginUpdates()
 	}
 }
 

@@ -11,8 +11,13 @@
 //  - Deletes the meme from the collection and from the model
 
 import UIKit
+import CoreData
 
-class SentMemesCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class SentMemesCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate {
+	
+	var sharedContext: NSManagedObjectContext {
+		return CoreDataStackManager.sharedInstance.managedObjectContext
+	}
 	
 	// MARK: Outlets
 	
@@ -52,12 +57,13 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDataS
 	// MARK: UICollectionViewDataSource methods
 	
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return memes.count
+		let sectionInfo = self.fetchedResultsController.sections![section]
+		return sectionInfo.numberOfObjects
 	}
 	
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! MemeCollectionViewCell
-		let meme = self.memes[indexPath.item]
+		let meme = fetchedResultsController.objectAtIndexPath(indexPath) as! Meme
 		
 		// Set name and image
 		cell.hidden = false
@@ -102,4 +108,21 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDataS
 		memes.removeAtIndex(index)
 		collectionView.reloadData()
 	}
+	
+	// MARK: NSFetchedResultsController
+	
+	lazy var fetchedResultsController: NSFetchedResultsController = {
+		
+		let fetchRequest = NSFetchRequest(entityName: "Meme")
+		
+		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "topText", ascending: true)]
+		
+		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+			managedObjectContext: self.sharedContext,
+			sectionNameKeyPath: nil,
+			cacheName: nil)
+		
+		return fetchedResultsController
+	}()
+	
 }
