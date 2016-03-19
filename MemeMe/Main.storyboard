@@ -42,8 +42,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="k94-7w-CQN">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="XlV-MY-kyI"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="lgg-K4-w6N">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="XlV-MY-kyI"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lgg-K4-w6N">
                             <connections>
                                 <segue destination="iWq-8E-Pc2" kind="presentation" id="lZ3-bl-0bq"/>
                             </connections>
@@ -93,7 +93,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="eNI-GF-8AF">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="memeCollectionViewCell" id="eNI-GF-8AF">
                                         <rect key="frame" x="0.0" y="64" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -114,8 +114,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="z1C-oZ-Raz">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="jJg-9g-r4q"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="vnp-B1-2gI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="jJg-9g-r4q"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="vnp-B1-2gI">
                             <connections>
                                 <segue destination="iWq-8E-Pc2" kind="presentation" id="3n1-G6-pdP"/>
                             </connections>
