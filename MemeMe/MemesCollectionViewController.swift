@@ -1,5 +1,5 @@
 //
-//  SentMemesCollectionViewController.swift
+//  MemesCollectionViewController.swift
 //  MemeMe
 //
 //  Created by Marcel Oliveira Alves on 5/24/15.
@@ -13,7 +13,7 @@
 import UIKit
 import CoreData
 
-class SentMemesCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate {
+class MemesCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate {
 	
 	var sharedContext: NSManagedObjectContext {
 		return CoreDataStackManager.sharedInstance.managedObjectContext
