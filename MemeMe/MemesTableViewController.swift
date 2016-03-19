@@ -1,5 +1,5 @@
 //
-//  SentMemesTableViewController.swift
+//  MemesTableViewController.swift
 //  MemeMe
 //
 //  Created by Marcel Oliveira Alves on 5/24/15.
@@ -13,7 +13,7 @@
 import UIKit
 import CoreData
 
-class SentMemesTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class MemesTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
 	
 	// MARK: Outlets
 	
@@ -23,7 +23,6 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.title = "Memes List"
 
 		configureUI()
 		
@@ -109,10 +108,8 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
 		case .Insert:
 			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
 		case .Delete:
-			print("delete")
 			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
 		case .Update:
-			print("update")
 			self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
 		case .Move:
 			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
@@ -130,6 +127,7 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
 	}
 	
 	func configureUI() {
+		self.title = "Memes List"
 		let tabItems = self.tabBarController!.tabBar.items! as [UITabBarItem]
 		let tabItem = tabItems[0] as UITabBarItem
 		tabItem.title = ""
