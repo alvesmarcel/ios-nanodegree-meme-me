@@ -38,8 +38,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	var meme: Meme?
 	
 	// Controls variables used to indicate if the textField should be cleaned or not when edit starts
-	var topTextFieldEdited: Bool!
-	var bottomTextFieldEdited: Bool!
+	var topTextViewEdited: Bool!
+	var bottomTextViewEdited: Bool!
 	
 	// MARK: View appearing configurations
 	
@@ -58,38 +58,30 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		configureUI()
+		
+		topTextViewEdited = false
+		bottomTextViewEdited = false
 	}
 	
-	// MARK
+	// MARK: UITextViewDelegate methods
 	
-	// MARK: UITextFieldDelegate methods
-	
-	// Performs some treatment (clean text field) when the user edits the text field for the first time
-	func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-		//setTextAttributes(textField) // Avoid bug from commit 440310157272601e563c4e116218223778cb16fb
-		if (textField.tag == 3) {
-			if (!topTextFieldEdited) {
-				textField.text = ""
-				topTextFieldEdited = true
-			}
-		} else if (textField.tag == 4) {
-			subscribeToKeyboardNotifications() // only the bottomTextField should activate the listening of notification messages
-			if (!bottomTextFieldEdited) {
-				textField.text = ""
-				bottomTextFieldEdited = true
+	func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+		if textView == topTextView && !topTextViewEdited {
+			textView.text = ""
+			topTextViewEdited = true
+		} else {
+			subscribeToKeyboardNotifications()
+			if !bottomTextViewEdited {
+				textView.text = ""
+				bottomTextViewEdited = true
 			}
 		}
 		return true
 	}
 	
-	// Hides the keyboard
-	func textFieldShouldReturn(textField: UITextField) -> Bool {
-		textField.resignFirstResponder()
-		
-		// When the keyboard is gone, it is useful to deactivate listening notifications because it can cause problems with the rest
-		// of the logic (only the bottomTextField editing should move the screen up)
+	func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+		// will return key end editing?
 		unsubscribeFromKeyboardNotifications()
-		
 		return true
 	}
 	
