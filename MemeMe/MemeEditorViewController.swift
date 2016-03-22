@@ -17,7 +17,7 @@
 import UIKit
 import CoreData
 
-class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 	
 	var sharedContext: NSManagedObjectContext {
 		return CoreDataStackManager.sharedInstance.managedObjectContext
@@ -27,8 +27,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	
 	@IBOutlet weak var imagePickerView: UIImageView!
 	@IBOutlet weak var cameraButton: UIBarButtonItem!
-	@IBOutlet weak var topTextField: UITextField!
-	@IBOutlet weak var bottomTextField: UITextField!
+	@IBOutlet weak var topTextView: UITextView!
+	@IBOutlet weak var bottomTextView: UITextView!
 	@IBOutlet weak var shareButton: UIBarButtonItem!
 
 	// MARK: Class variables
@@ -41,29 +41,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	var topTextFieldEdited: Bool!
 	var bottomTextFieldEdited: Bool!
 	
-	// Dictionary of meme text attributes
-	let memeTextAttributes = [
-		NSStrokeColorAttributeName : UIColor.blackColor(),
-		NSForegroundColorAttributeName : UIColor.whiteColor(),
-		NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-		NSStrokeWidthAttributeName : -4.0
-	]
-	
 	// MARK: View appearing configurations
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		// Disables cameraButton if the camera is not avaible
-		cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-		
 		// Sets delegates
-		topTextField.delegate = self
-		bottomTextField.delegate = self
+		topTextView.delegate = self
+		bottomTextView.delegate = self
 		
 		// Sets attributes of text fields
-		setTextAttributes(topTextField)
-		setTextAttributes(bottomTextField)
+		setTextAttributes(topTextView)
+		setTextAttributes(bottomTextView)
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -71,16 +60,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 		configureUI()
 	}
 	
-	// Hides status bar
-//	override func prefersStatusBarHidden() -> Bool {
-//		return true
-//	}
+	// MARK
 	
 	// MARK: UITextFieldDelegate methods
 	
 	// Performs some treatment (clean text field) when the user edits the text field for the first time
 	func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-		setTextAttributes(textField) // Avoid bug from commit 440310157272601e563c4e116218223778cb16fb
+		//setTextAttributes(textField) // Avoid bug from commit 440310157272601e563c4e116218223778cb16fb
 		if (textField.tag == 3) {
 			if (!topTextFieldEdited) {
 				textField.text = ""
@@ -168,7 +154,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	// Stores the meme in the AppDelegate's memes array
 	func save() {
 		dispatch_async(dispatch_get_main_queue()) {
-			let _ = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.imagePickerView.image!, memedImage: self.generateMemedImage(), insertIntoManagedObjectContext: self.sharedContext)
+			let _ = Meme(topText: self.topTextView.text!, bottomText: self.bottomTextView.text!, originalImage: self.imagePickerView.image!, memedImage: self.generateMemedImage(), insertIntoManagedObjectContext: self.sharedContext)
 			CoreDataStackManager.sharedInstance.saveContext()
 		}
 	}
@@ -193,9 +179,21 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	}
 	
 	// Sets attributes of a UITextField and align the text
-	func setTextAttributes(textField: UITextField) {
-		textField.defaultTextAttributes = memeTextAttributes
-		textField.textAlignment = .Center
+	func setTextAttributes(textView: UITextView) {
+		
+		// Dictionary of meme text attributes
+		let memeTextAttributes = [
+			NSStrokeColorAttributeName : UIColor.blackColor(),
+			NSForegroundColorAttributeName : UIColor.whiteColor(),
+			NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+			NSStrokeWidthAttributeName : -4.0,
+		]
+		
+		// Initial text
+		textView.attributedText = NSAttributedString(string: textView == topTextView ? "TOP" : "BOTTOM", attributes: memeTextAttributes)
+		
+		textView.typingAttributes = memeTextAttributes
+		textView.textAlignment = .Center
 	}
 	
 	// Moves the screen up
@@ -229,37 +227,41 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	}
 	
 	func configureUI() {
+		
+		// Disables cameraButton if the camera is not avaible
+		cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+		
 		// imagePickerView initial configuration
 		imagePickerView.contentMode = UIViewContentMode.ScaleAspectFit
-		imagePickerView.backgroundColor = UIColor.whiteColor()
+		imagePickerView.backgroundColor = UIColor.blackColor()
 		
 		// Checks if meme is nil (MemeEditorVC was called from a Sent Memes VC) or not (MemeEditorVC was called from MemeDetailVC)
-		if (meme == nil) {
-			topTextField.text = "TOP"
-			topTextFieldEdited = false
-			
-			bottomTextField.text = "BOTTOM"
-			bottomTextFieldEdited = false
-		} else {
-			topTextField.text = meme!.topText
-			topTextFieldEdited = true
-			
-			bottomTextField.text = meme!.bottomText
-			bottomTextFieldEdited = true
-			
-			imagePickerView.image = meme!.originalImage
-		}
-		
-		// If there's no image selected, shareButton is disabled and the text fields are hidden
-		if (imagePickerView.image == nil) {
-			topTextField.hidden = true
-			bottomTextField.hidden = true
-			shareButton.enabled = false
-		} else {
-			topTextField.hidden = false
-			bottomTextField.hidden = false
-			shareButton.enabled = true
-		}
+//		if (meme == nil) {
+//			topTextField.text = "TOP"
+//			topTextFieldEdited = false
+//			
+//			bottomTextField.text = "BOTTOM"
+//			bottomTextFieldEdited = false
+//		} else {
+//			topTextField.text = meme!.topText
+//			topTextFieldEdited = true
+//			
+//			bottomTextField.text = meme!.bottomText
+//			bottomTextFieldEdited = true
+//			
+//			imagePickerView.image = meme!.originalImage
+//		}
+//		
+//		// If there's no image selected, shareButton is disabled and the text fields are hidden
+//		if (imagePickerView.image == nil) {
+//			topTextField.hidden = true
+//			bottomTextField.hidden = true
+//			shareButton.enabled = false
+//		} else {
+//			topTextField.hidden = false
+//			bottomTextField.hidden = false
+//			shareButton.enabled = true
+//		}
 	}
 }
 

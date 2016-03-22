@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Memes Table View Controller-->
@@ -143,32 +144,38 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kg5-So-JhX">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bsD-Xy-3cf">
-                                <rect key="frame" x="252" y="454" width="97" height="30"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="BOTTOM TEXT" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="02X-C3-Cxp">
+                                <rect key="frame" x="20" y="359" width="560" height="197"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PEx-yo-LDY">
-                                <rect key="frame" x="252" y="166" width="97" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="TOP TEXT" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RxC-ZW-O47">
+                                <rect key="frame" x="20" y="64" width="560" height="197"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bsD-Xy-3cf" firstAttribute="centerX" secondItem="DZK-R8-4pN" secondAttribute="centerX" id="H0q-lY-1M7"/>
+                            <constraint firstItem="RxC-ZW-O47" firstAttribute="height" secondItem="kg5-So-JhX" secondAttribute="height" multiplier="0.4" id="418-KG-FTx"/>
+                            <constraint firstItem="02X-C3-Cxp" firstAttribute="leading" secondItem="DZK-R8-4pN" secondAttribute="leadingMargin" id="A2q-fV-Hf0"/>
+                            <constraint firstItem="02X-C3-Cxp" firstAttribute="trailing" secondItem="DZK-R8-4pN" secondAttribute="trailingMargin" id="CCk-Md-lYV"/>
                             <constraint firstItem="kg5-So-JhX" firstAttribute="leading" secondItem="DZK-R8-4pN" secondAttribute="leadingMargin" constant="-20" id="KBs-AT-f5H"/>
-                            <constraint firstItem="PEx-yo-LDY" firstAttribute="top" secondItem="Ask-jL-mV1" secondAttribute="bottom" constant="102" id="OIx-Qx-avq"/>
+                            <constraint firstItem="02X-C3-Cxp" firstAttribute="height" secondItem="kg5-So-JhX" secondAttribute="height" multiplier="0.4" id="Leu-pD-5Jk"/>
+                            <constraint firstItem="RxC-ZW-O47" firstAttribute="leading" secondItem="DZK-R8-4pN" secondAttribute="leadingMargin" id="MsL-zq-fug"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SCX-JM-avU" secondAttribute="trailing" constant="-20" id="UZD-oJ-RNe"/>
-                            <constraint firstItem="PEx-yo-LDY" firstAttribute="centerX" secondItem="DZK-R8-4pN" secondAttribute="centerX" id="Wgl-eU-C5s"/>
+                            <constraint firstItem="RxC-ZW-O47" firstAttribute="top" secondItem="Ask-jL-mV1" secondAttribute="bottom" id="W0S-Ao-7k8"/>
                             <constraint firstItem="SCX-JM-avU" firstAttribute="top" secondItem="kg5-So-JhX" secondAttribute="bottom" id="bgs-XY-PLo"/>
                             <constraint firstItem="kg5-So-JhX" firstAttribute="top" secondItem="Ask-jL-mV1" secondAttribute="bottom" id="cDV-Sh-lii"/>
                             <constraint firstItem="nEx-Dg-47B" firstAttribute="top" secondItem="SCX-JM-avU" secondAttribute="bottom" id="dMi-O7-4Pa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kg5-So-JhX" secondAttribute="trailing" constant="-20" id="gaO-IB-BmE"/>
                             <constraint firstItem="SCX-JM-avU" firstAttribute="leading" secondItem="DZK-R8-4pN" secondAttribute="leadingMargin" constant="-20" id="isC-oN-KVa"/>
-                            <constraint firstItem="SCX-JM-avU" firstAttribute="top" secondItem="bsD-Xy-3cf" secondAttribute="bottom" constant="72" id="vZ6-P0-gVR"/>
+                            <constraint firstItem="RxC-ZW-O47" firstAttribute="trailing" secondItem="DZK-R8-4pN" secondAttribute="trailingMargin" id="kpS-O7-RI9"/>
+                            <constraint firstItem="SCX-JM-avU" firstAttribute="top" secondItem="02X-C3-Cxp" secondAttribute="bottom" id="nvg-VD-SFp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mAe-i1-oEN">
@@ -184,11 +191,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bottomTextField" destination="bsD-Xy-3cf" id="YWj-wM-c9q"/>
+                        <outlet property="bottomTextView" destination="02X-C3-Cxp" id="xaM-wl-BVA"/>
                         <outlet property="cameraButton" destination="fg6-qC-wVU" id="P4h-LW-sC3"/>
                         <outlet property="imagePickerView" destination="kg5-So-JhX" id="rkR-Hr-TWd"/>
                         <outlet property="shareButton" destination="yqE-Z0-13x" id="b6E-Lu-Bzz"/>
-                        <outlet property="topTextField" destination="PEx-yo-LDY" id="DX7-E9-jj9"/>
+                        <outlet property="topTextView" destination="RxC-ZW-O47" id="ENP-Rl-Td8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDI-Dz-2OJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
