@@ -19,8 +19,6 @@ import CoreData
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 	
-	// TODO: Change top bar to a navigation bar 
-	
 	var sharedContext: NSManagedObjectContext {
 		return CoreDataStackManager.sharedInstance.managedObjectContext
 	}
@@ -32,14 +30,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	@IBOutlet weak var topTextField: UITextField!
 	@IBOutlet weak var bottomTextField: UITextField!
 	@IBOutlet weak var shareButton: UIBarButtonItem!
-	@IBOutlet weak var topToolbar: UIToolbar!
-	@IBOutlet weak var bottomToolbar: UIToolbar!
-	
+
 	// MARK: Class variables
 	
 	// If MemeEditorVC is called from MemeDetailVC, this meme is initialized; otherwise, it will be nil
 	// It is used to edit an already existing meme
-	var meme: Meme!
+	var meme: Meme?
 	
 	// Controls variables used to indicate if the textField should be cleaned or not when edit starts
 	var topTextFieldEdited: Bool!
@@ -72,44 +68,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		
-		// imagePickerView initial configuration
-		imagePickerView.contentMode = UIViewContentMode.ScaleAspectFit
-		imagePickerView.backgroundColor = UIColor.darkGrayColor()
-		
-		// Checks if meme is nil (MemeEditorVC was called from a Sent Memes VC) or not (MemeEditorVC was called from MemeDetailVC)
-		if (meme == nil) {
-			topTextField.text = "TOP"
-			topTextFieldEdited = false
-			
-			bottomTextField.text = "BOTTOM"
-			bottomTextFieldEdited = false
-		} else {
-			topTextField.text = meme.topText
-			topTextFieldEdited = true
-			
-			bottomTextField.text = meme.bottomText
-			bottomTextFieldEdited = true
-			
-			imagePickerView.image = meme.originalImage
-		}
-		
-		// If there's no image selected, shareButton is disabled and the text fields are hidden
-		if (imagePickerView.image == nil) {
-			topTextField.hidden = true
-			bottomTextField.hidden = true
-			shareButton.enabled = false
-		} else {
-			topTextField.hidden = false
-			bottomTextField.hidden = false
-			shareButton.enabled = true
-		}
+		configureUI()
 	}
 	
 	// Hides status bar
-	override func prefersStatusBarHidden() -> Bool {
-		return true
-	}
+//	override func prefersStatusBarHidden() -> Bool {
+//		return true
+//	}
 	
 	// MARK: UITextFieldDelegate methods
 	
@@ -179,13 +144,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	// Presents an activity view to share the created meme
 	@IBAction func shareMeme(sender: AnyObject) {
 		let memedImage = self.generateMemedImage()
-		let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-		self.presentViewController(activityVC, animated: true, completion: nil)
-		activityVC.completionWithItemsHandler = {
-			(activity, success, items, error) in
-			if (success) {
-				self.save() // The meme is saved only if the activity view operation was succesful
-				self.dismissViewControllerAnimated(true, completion: nil)
+		
+		dispatch_async(dispatch_get_main_queue()) {
+			let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+			self.presentViewController(activityVC, animated: false, completion: nil)
+			activityVC.completionWithItemsHandler = {
+				(activity, success, items, error) in
+				if (success) {
+					self.save() // The meme is saved only if the activity view operation was succesful
+					self.dismissViewControllerAnimated(true, completion: nil)
+				}
 			}
 		}
 	}
@@ -203,19 +171,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 			let _ = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originalImage: self.imagePickerView.image!, memedImage: self.generateMemedImage(), insertIntoManagedObjectContext: self.sharedContext)
 			CoreDataStackManager.sharedInstance.saveContext()
 		}
-		
-//		let meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
-//		
-//		let object = UIApplication.sharedApplication().delegate
-//		let appDelegate = object as! AppDelegate
-//		appDelegate.memes.append(meme)
 	}
 	
 	// Generates an image (memedImage) that is the original image with the text fields on top of it
 	func generateMemedImage() -> UIImage {
 		// Hide top and bottom toolbars
-		topToolbar.hidden = true
-		bottomToolbar.hidden = true
+		//topToolbar.hidden = true
+		//bottomToolbar.hidden = true
 		
 		// Get the image from screen
 		UIGraphicsBeginImageContext(self.view.frame.size)
@@ -224,8 +186,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 		UIGraphicsEndImageContext()
 		
 		// Show top and bottom toolbars
-		topToolbar.hidden = false
-		bottomToolbar.hidden = false
+		//topToolbar.hidden = false
+		//bottomToolbar.hidden = false
 		
 		return memedImage
 	}
@@ -264,6 +226,40 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 		let userInfo = notification.userInfo
 		let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
 		return keyboardSize.CGRectValue().height
+	}
+	
+	func configureUI() {
+		// imagePickerView initial configuration
+		imagePickerView.contentMode = UIViewContentMode.ScaleAspectFit
+		imagePickerView.backgroundColor = UIColor.whiteColor()
+		
+		// Checks if meme is nil (MemeEditorVC was called from a Sent Memes VC) or not (MemeEditorVC was called from MemeDetailVC)
+		if (meme == nil) {
+			topTextField.text = "TOP"
+			topTextFieldEdited = false
+			
+			bottomTextField.text = "BOTTOM"
+			bottomTextFieldEdited = false
+		} else {
+			topTextField.text = meme!.topText
+			topTextFieldEdited = true
+			
+			bottomTextField.text = meme!.bottomText
+			bottomTextFieldEdited = true
+			
+			imagePickerView.image = meme!.originalImage
+		}
+		
+		// If there's no image selected, shareButton is disabled and the text fields are hidden
+		if (imagePickerView.image == nil) {
+			topTextField.hidden = true
+			bottomTextField.hidden = true
+			shareButton.enabled = false
+		} else {
+			topTextField.hidden = false
+			bottomTextField.hidden = false
+			shareButton.enabled = true
+		}
 	}
 }
 
