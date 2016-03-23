@@ -80,10 +80,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	}
 	
 	func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-		// will return key end editing?
 		unsubscribeFromKeyboardNotifications()
 		return true
 	}
+	
+	
 	
 	// MARK: UIImagePickerControllerDelegate methods
 	

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		281DF7381C9C51C300C942A4 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281DF7371C9C51C300C942A4 /* CoreDataStackManager.swift */; };
+		286EDC881CA2BCAC004112A1 /* MemeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286EDC871CA2BCAC004112A1 /* MemeTextView.swift */; };
 		28AFFC171C9DF199009C1F6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AFFC161C9DF199009C1F6C /* Main.storyboard */; };
 		28B98EED1B110F90003A9B73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B98EEC1B110F90003A9B73 /* AppDelegate.swift */; };
 		28B98EEF1B110F90003A9B73 /* MemeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B98EEE1B110F90003A9B73 /* MemeEditorViewController.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		281DF7371C9C51C300C942A4 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		286EDC871CA2BCAC004112A1 /* MemeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeTextView.swift; sourceTree = "<group>"; };
 		28AFFC161C9DF199009C1F6C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		28B98EE71B110F90003A9B73 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28B98EEB1B110F90003A9B73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				28B98F171B12A499003A9B73 /* MemeCollectionViewCell.swift */,
+				286EDC871CA2BCAC004112A1 /* MemeTextView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				28B98F0D1B11286D003A9B73 /* Meme.swift in Sources */,
 				281DF7381C9C51C300C942A4 /* CoreDataStackManager.swift in Sources */,
 				28FB70841C9C45810061870E /* ImageCache.swift in Sources */,
+				286EDC881CA2BCAC004112A1 /* MemeTextView.swift in Sources */,
 				28B98EEF1B110F90003A9B73 /* MemeEditorViewController.swift in Sources */,
 				28B98F1A1B12B922003A9B73 /* MemeDetailViewController.swift in Sources */,
 				28B98F161B12903C003A9B73 /* MemesCollectionViewController.swift in Sources */,
