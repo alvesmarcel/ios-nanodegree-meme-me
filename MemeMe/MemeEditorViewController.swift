@@ -17,11 +17,7 @@
 import UIKit
 import CoreData
 
-class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
-	
-	var sharedContext: NSManagedObjectContext {
-		return CoreDataStackManager.sharedInstance.managedObjectContext
-	}
+class MemeEditorViewController: UIViewController, UINavigationControllerDelegate {
 	
 	// MARK: Outlets
 	
@@ -37,11 +33,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	// It is used to edit an already existing meme
 	var meme: Meme?
 	
-	// Controls variables used to indicate if the textField should be cleaned or not when edit starts
+	// Control variables used to indicate if the textField should be cleaned or not when edit starts
 	var topTextViewEdited = false
 	var bottomTextViewEdited = false
 	
-	// MARK: View appearing configurations
+	// MARK: Shared Context
+	
+	var sharedContext: NSManagedObjectContext {
+		return CoreDataStackManager.sharedInstance.managedObjectContext
+	}
+	
+	// MARK: Lifecycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -58,66 +60,20 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		configureUI()
-		
-		
-	}
-	
-	// MARK: UITextViewDelegate methods
-	
-	func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-		if textView == topTextView {
-			if !topTextViewEdited {
-				textView.text = ""
-				topTextViewEdited = true
-			}
-		} else {
-			subscribeToKeyboardNotifications()
-			if !bottomTextViewEdited {
-				textView.text = ""
-				bottomTextViewEdited = true
-			}
-		}
-		return true
-	}
-	
-	func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-		unsubscribeFromKeyboardNotifications()
-		
-		if text == "\n" {
-			textView.resignFirstResponder()
-		}
-		
-		return true
-	}
-	
-	// MARK: UIImagePickerControllerDelegate methods
-	
-	// Sets the imagePickerView image, enables the shareButton and dismiss the view after media was picked
-	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-			imagePickerView.image = image
-			shareButton.enabled = true
-		}
-		dismissViewControllerAnimated(true, completion: nil)
-	}
 
-	// Dismiss the view if the user cancel the image picking
-	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
 	// MARK: IBActions
 	
-	// Selects and present view controller to pick an image
-	// (the tag identifies if the event comes from the camera button or from the album button)
-	@IBAction func pickAnImage(sender: AnyObject) {
+	// Selects and presents view controller to pick an image
+	@IBAction func pickAnImage(sender: UIBarButtonItem) {
 		let imagePicker = UIImagePickerController()
 		imagePicker.delegate = self
 		
 		// Identifies the source
-		if (sender.tag == 1) {
+		if (sender == cameraButton) {
 			imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-		} else if (sender.tag == 2) {
+		} else {
 			imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
 		}
 		
@@ -141,8 +97,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 		}
 	}
 	
-	// Dismiss the view if the user cancel the edition
-	@IBAction func cancelEdition(sender: AnyObject) {
+	// Dismiss the view controller
+	@IBAction func cancelButtonTouch(sender: AnyObject) {
 		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
@@ -262,3 +218,48 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	}
 }
 
+// MARK: UITextViewDelegate
+extension MemeEditorViewController : UITextViewDelegate {
+	func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+		if textView == topTextView {
+			if !topTextViewEdited {
+				textView.text = ""
+				topTextViewEdited = true
+			}
+		} else {
+			subscribeToKeyboardNotifications()
+			if !bottomTextViewEdited {
+				textView.text = ""
+				bottomTextViewEdited = true
+			}
+		}
+		return true
+	}
+	
+	func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+		unsubscribeFromKeyboardNotifications()
+		
+		if text == "\n" {
+			textView.resignFirstResponder()
+		}
+		
+		return true
+	}
+}
+
+// MARK: UIImagePickerControllerDelegate
+extension MemeEditorViewController : UIImagePickerControllerDelegate {
+	// Sets the imagePickerView image, enables the shareButton and dismiss the view after media was picked
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+			imagePickerView.image = image
+			shareButton.enabled = true
+		}
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	// Dismiss the view if the user cancel the image picking
+	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+}

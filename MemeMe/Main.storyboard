@@ -186,7 +186,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="6IH-Lw-TmH">
                             <connections>
-                                <action selector="cancelEdition:" destination="iWq-8E-Pc2" id="m41-Di-vGc"/>
+                                <action selector="cancelButtonTouch:" destination="iWq-8E-Pc2" id="D9a-9M-vp7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
