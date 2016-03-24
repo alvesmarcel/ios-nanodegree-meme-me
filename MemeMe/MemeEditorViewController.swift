@@ -33,13 +33,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
 	// MARK: Class variables
 	
-	// If MemeEditorVC is called from MemeDetailVC, this meme is initialized; otherwise, it will be nil
+	// Meme is not nil if MemeEditorViewController is called from MemeDetailViewController
 	// It is used to edit an already existing meme
 	var meme: Meme?
 	
 	// Controls variables used to indicate if the textField should be cleaned or not when edit starts
-	var topTextViewEdited: Bool!
-	var bottomTextViewEdited: Bool!
+	var topTextViewEdited = false
+	var bottomTextViewEdited = false
 	
 	// MARK: View appearing configurations
 	
@@ -59,8 +59,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 		super.viewWillAppear(animated)
 		configureUI()
 		
-		topTextViewEdited = false
-		bottomTextViewEdited = false
+		
 	}
 	
 	// MARK: UITextViewDelegate methods
@@ -220,7 +219,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	// Find out the keyboard height
 	func getKeyboardHeight(notification: NSNotification) -> CGFloat {
 		let userInfo = notification.userInfo
-		let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+		let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
 		return keyboardSize.CGRectValue().height
 	}
 	
