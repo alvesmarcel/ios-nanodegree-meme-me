@@ -66,9 +66,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	// MARK: UITextViewDelegate methods
 	
 	func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-		if textView == topTextView && !topTextViewEdited {
-			textView.text = ""
-			topTextViewEdited = true
+		if textView == topTextView {
+			if !topTextViewEdited {
+				textView.text = ""
+				topTextViewEdited = true
+			}
 		} else {
 			subscribeToKeyboardNotifications()
 			if !bottomTextViewEdited {
@@ -81,10 +83,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 	
 	func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
 		unsubscribeFromKeyboardNotifications()
+		
+		if text == "\n" {
+			textView.resignFirstResponder()
+		}
+		
 		return true
 	}
-	
-	
 	
 	// MARK: UIImagePickerControllerDelegate methods
 	
