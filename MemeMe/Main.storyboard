@@ -192,6 +192,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bottomTextView" destination="02X-C3-Cxp" id="xaM-wl-BVA"/>
+                        <outlet property="bottomToolbar" destination="SCX-JM-avU" id="jMy-wD-uNf"/>
                         <outlet property="cameraButton" destination="fg6-qC-wVU" id="P4h-LW-sC3"/>
                         <outlet property="imagePickerView" destination="kg5-So-JhX" id="rkR-Hr-TWd"/>
                         <outlet property="shareButton" destination="yqE-Z0-13x" id="b6E-Lu-Bzz"/>

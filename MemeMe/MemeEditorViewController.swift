@@ -26,7 +26,8 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
 	@IBOutlet weak var topTextView: UITextView!
 	@IBOutlet weak var bottomTextView: UITextView!
 	@IBOutlet weak var shareButton: UIBarButtonItem!
-
+	@IBOutlet weak var bottomToolbar: UIToolbar!
+	
 	// MARK: Class variables
 	
 	// Meme is not nil if MemeEditorViewController is called from MemeDetailViewController
@@ -84,15 +85,13 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
 	@IBAction func shareMeme(sender: AnyObject) {
 		let memedImage = self.generateMemedImage()
 		
-		dispatch_async(dispatch_get_main_queue()) {
-			let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-			self.presentViewController(activityVC, animated: false, completion: nil)
-			activityVC.completionWithItemsHandler = {
-				(activity, success, items, error) in
-				if (success) {
-					self.save() // The meme is saved only if the activity view operation was succesful
-					self.dismissViewControllerAnimated(true, completion: nil)
-				}
+		let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+		self.presentViewController(activityViewController, animated: false, completion: nil)
+		activityViewController.completionWithItemsHandler = {
+			(activity, success, items, error) in
+			if (success) {
+				self.save() // The meme is saved only if the activity view operation was succesful
+				self.dismissViewControllerAnimated(true, completion: nil)
 			}
 		}
 	}
@@ -115,8 +114,8 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
 	// Generates an image (memedImage) that is the original image with the text fields on top of it
 	func generateMemedImage() -> UIImage {
 		// Hide top and bottom toolbars
-		//topToolbar.hidden = true
-		//bottomToolbar.hidden = true
+		navigationController?.navigationBar.hidden = true
+		bottomToolbar.hidden = true
 		
 		// Get the image from screen
 		UIGraphicsBeginImageContext(self.view.frame.size)
@@ -125,8 +124,8 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
 		UIGraphicsEndImageContext()
 		
 		// Show top and bottom toolbars
-		//topToolbar.hidden = false
-		//bottomToolbar.hidden = false
+		navigationController?.navigationBar.hidden = false
+		bottomToolbar.hidden = false
 		
 		return memedImage
 	}
@@ -148,6 +147,8 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
 		textView.typingAttributes = memeTextAttributes
 		textView.textAlignment = .Center
 	}
+	
+	// MARK: Keyboard helper methods
 	
 	// Moves the screen up
 	func keyboardWillShow(notification: NSNotification) {
@@ -179,6 +180,8 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
 		return keyboardSize.CGRectValue().height
 	}
 	
+	// MARK: UI configuration
+	
 	func configureUI() {
 		
 		// Disables cameraButton if the camera is not avaible
@@ -188,33 +191,35 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
 		imagePickerView.contentMode = UIViewContentMode.ScaleAspectFit
 		imagePickerView.backgroundColor = UIColor.blackColor()
 		
-		// Checks if meme is nil (MemeEditorVC was called from a Sent Memes VC) or not (MemeEditorVC was called from MemeDetailVC)
-//		if (meme == nil) {
-//			topTextField.text = "TOP"
-//			topTextFieldEdited = false
-//			
-//			bottomTextField.text = "BOTTOM"
-//			bottomTextFieldEdited = false
-//		} else {
-//			topTextField.text = meme!.topText
-//			topTextFieldEdited = true
-//			
-//			bottomTextField.text = meme!.bottomText
-//			bottomTextFieldEdited = true
-//			
-//			imagePickerView.image = meme!.originalImage
-//		}
-//		
-//		// If there's no image selected, shareButton is disabled and the text fields are hidden
-//		if (imagePickerView.image == nil) {
-//			topTextField.hidden = true
-//			bottomTextField.hidden = true
-//			shareButton.enabled = false
-//		} else {
-//			topTextField.hidden = false
-//			bottomTextField.hidden = false
-//			shareButton.enabled = true
-//		}
+		// If meme is nil, then a new meme will be created
+		if (meme == nil) {
+			topTextView.text = "TOP"
+			topTextViewEdited = false
+			
+			bottomTextView.text = "BOTTOM"
+			bottomTextViewEdited = false
+		}
+		// Meme is not nil, it is editing an existing meme
+		else {
+			topTextView.text = meme!.topText
+			topTextViewEdited = true
+			
+			bottomTextView.text = meme!.bottomText
+			bottomTextViewEdited = true
+			
+			imagePickerView.image = meme!.originalImage
+		}
+		
+		// If there's no image selected, shareButton is disabled and the text views are hidden
+		if (imagePickerView.image == nil) {
+			topTextView.hidden = true
+			bottomTextView.hidden = true
+			shareButton.enabled = false
+		} else {
+			topTextView.hidden = false
+			bottomTextView.hidden = false
+			shareButton.enabled = true
+		}
 	}
 }
 
