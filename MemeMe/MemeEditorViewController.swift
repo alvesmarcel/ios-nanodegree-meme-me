@@ -83,15 +83,16 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
 	
 	// Presents an activity view to share the created meme
 	@IBAction func shareMeme(sender: AnyObject) {
-		let memedImage = self.generateMemedImage()
-		
-		let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-		self.presentViewController(activityViewController, animated: false, completion: nil)
-		activityViewController.completionWithItemsHandler = {
-			(activity, success, items, error) in
-			if (success) {
-				self.save() // The meme is saved only if the activity view operation was succesful
-				self.dismissViewControllerAnimated(true, completion: nil)
+		dispatch_async(dispatch_get_main_queue()) {
+			let memedImage = self.generateMemedImage()
+			let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+			self.presentViewController(activityViewController, animated: false, completion: nil)
+			activityViewController.completionWithItemsHandler = {
+				(activity, success, items, error) in
+				if (success) {
+					self.saveMeme(memedImage) // The meme is saved only if the activity view operation was succesful
+					self.dismissViewControllerAnimated(true, completion: nil)
+				}
 			}
 		}
 	}
@@ -103,30 +104,30 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
 	
 	// MARK: Helper methods
 	
-	// Stores the meme in the AppDelegate's memes array
-	func save() {
-		dispatch_async(dispatch_get_main_queue()) {
-			let _ = Meme(topText: self.topTextView.text!, bottomText: self.bottomTextView.text!, originalImage: self.imagePickerView.image!, memedImage: self.generateMemedImage(), insertIntoManagedObjectContext: self.sharedContext)
-			CoreDataStackManager.sharedInstance.saveContext()
-		}
+	// Stores the meme
+	func saveMeme(memedImage: UIImage) {
+		let _ = Meme(topText: self.topTextView.text!, bottomText: self.bottomTextView.text!, originalImage: self.imagePickerView.image!, memedImage: memedImage, insertIntoManagedObjectContext: self.sharedContext)
+		CoreDataStackManager.sharedInstance.saveContext()
 	}
 	
 	// Generates an image (memedImage) that is the original image with the text fields on top of it
 	func generateMemedImage() -> UIImage {
-		// Hide top and bottom toolbars
-		navigationController?.navigationBar.hidden = true
-		bottomToolbar.hidden = true
+
+		// Creates a context with the size of imagePickerView to draw the meme
+		UIGraphicsBeginImageContextWithOptions(imagePickerView.frame.size, true, 0.0)
 		
-		// Get the image from screen
-		UIGraphicsBeginImageContext(self.view.frame.size)
-		self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+		// The frame to be drawn should be the size of the self.view to maintain image proportions
+		// The origin of the frame has to me translated to take in consideration imagePickerView's origin
+		let drawFrame = CGRect(x: -imagePickerView.frame.origin.x, y: -imagePickerView.frame.origin.y, width: view.frame.width, height: view.frame.height)
+		
+		// Draws the image in the drawFrame
+		// The method should be called by self.view because the textViews are in its hierarchy
+		view.drawViewHierarchyInRect(drawFrame, afterScreenUpdates: true)
+		
+		// Gets memed image from context
 		let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
-		
-		// Show top and bottom toolbars
-		navigationController?.navigationBar.hidden = false
-		bottomToolbar.hidden = false
-		
+
 		return memedImage
 	}
 	
